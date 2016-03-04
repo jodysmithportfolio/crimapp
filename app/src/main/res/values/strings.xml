@@ -11,6 +11,6 @@
     <string name="backbuttontext">Back</string>
     <string name="lengend">Legend</string>
     <string name="howtousetext">How to Use</string>
-    <string name="aboutustext">About Us</string>
+    <string name="aboutustext">CrimApp was developed by Cyriac, Jody, and Daniel.</string>
     <string name="title_activity_crime_map">Crime Map</string>
 </resources>
