@@ -1,10 +1,8 @@
 package com.somethingweird.crimapp;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +17,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.content.Context;
-
-
-
 import java.util.Calendar;
+
 
 public class Landing extends AppCompatActivity {
     Button callButton;
@@ -89,7 +84,6 @@ public class Landing extends AppCompatActivity {
                 insertCurrentLocation();
             }
         });
-
         aboutButton = (Button) findViewById(R.id.aboutbutton);
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,11 +93,12 @@ public class Landing extends AppCompatActivity {
             }
         });
 
-        searchButton = (Button) findViewById(R.id.searchbutton);
+        searchButton = (Button) findViewById(R.id.searchbylocbutton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+                searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
                 startActivity(searchMapIntent);
             }
         });

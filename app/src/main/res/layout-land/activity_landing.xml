@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/searchbylocationbox"
-        android:text="@string/seach_by_location_text"
+        android:text="@string/search_by_location_text"
         android:inputType="text"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -61,10 +61,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/searchbuttontext"
-        android:id="@+id/searchbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/searchbylocbuttonstring"
+        android:id="@+id/searchbylocbutton"
+        android:layout_alignTop="@+id/searchbylocationbox"
+        android:layout_alignEnd="@+id/meridianpicker" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -72,7 +72,15 @@
         android:layout_height="wrap_content"
         android:text="@string/getlocationboxstring"
         android:id="@+id/getlocationbutton"
-        android:layout_alignBottom="@+id/searchbylocationbox"
-        android:layout_alignEnd="@+id/aboutbutton" />
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/searchbylocbutton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_by_time_button_string"
+        android:id="@+id/searchbytimebutton"
+        android:layout_alignBottom="@+id/minutepicker"
+        android:layout_alignStart="@+id/meridianpicker" />
 
 </RelativeLayout>

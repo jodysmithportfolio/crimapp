@@ -30,12 +30,12 @@
         android:layout_width="@dimen/abc_action_button_min_width_material"
         android:layout_height="wrap_content"
         android:id="@+id/searchbylocationbox"
-        android:text="@string/seach_by_location_text"
+        android:text="@string/search_by_location_text"
         android:inputType="text"
-        android:layout_above="@+id/hourpicker"
-        android:layout_marginBottom="43dp"
-        android:layout_alignEnd="@+id/searchbutton"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp"
+        android:layout_toStartOf="@+id/searchbylocbutton" />
 
     <NumberPicker
         android:layout_width="wrap_content"
@@ -64,10 +64,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:id="@+id/searchbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/searchbylocbuttonstring"
+        android:id="@+id/searchbylocbutton"
+        android:layout_alignBottom="@+id/searchbylocationbox"
+        android:layout_alignParentEnd="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -75,7 +75,15 @@
         android:layout_height="wrap_content"
         android:text="@string/getlocationboxstring"
         android:id="@+id/getlocationbutton"
-        android:layout_alignBottom="@+id/searchbylocationbox"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/searchbylocbutton"
+        android:layout_alignEnd="@+id/searchbylocbutton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_by_time_button_string"
+        android:id="@+id/button"
+        android:layout_below="@+id/meridianpicker"
+        android:layout_toEndOf="@+id/searchbylocationbox" />
 
 </RelativeLayout>
