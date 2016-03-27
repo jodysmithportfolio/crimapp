@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<crime>
+    <type>theft</type>
+    <location>429 N Ohio Ave</location>
+    <occured>2/8/2016 12:00</occured>
+    <between>2/8/2016 12:00</between>
+    <narrative>R/P STATES THE SCREENS TO THE FRONT BAY WINDOW AND BACK DOOR HAVE BEEN TORN AND STOLEN.</narrative>
+</crime>
+</resources>
