@@ -17,6 +17,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.io.IOException;
 import java.util.List;
@@ -94,6 +97,31 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                 .title("Crime") //placeholder Crime.GetTitle()
                 .position(new LatLng(address.getLatitude(), address.getLongitude())));
 
+        //Test list for addHeatMap
+        List<LatLng> list = null;
+        LatLng testLoc = new LatLng(40, -83);
+        list.add(testLoc);
+        addHeatMap(list);
+
+    }
+
+    /**
+     * Method to add the heat map layer to the map.
+     *
+     * REQUIRES: @code(List<LatLng> list) a collection of LatLng objects representing the crimes
+     * in the database.
+     *
+     * RETURNS: void.
+     */
+    private void addHeatMap(List<LatLng> list) {
+        // Create a heat map tile provider, passing it the listlngs of the crime locations.
+        HeatmapTileProvider mProvider = new HeatmapTileProvider.Builder()
+                .data(list)
+                .radius(10)
+                .opacity(.3)
+                .build();
+        // Add a tile overlay to the map, using the heat map tile provider.
+        TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
     }
 
     /**
