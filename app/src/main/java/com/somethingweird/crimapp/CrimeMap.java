@@ -80,16 +80,18 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(currentLoc).title("Current Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 15));
         //getCrimes
-        //call method that
+        //call method that pulls the crimes from the XML
 
         //address to Address Object
-        String s = "429 N High St, Columbus, OH"; //placeholder for Crime.GetAddress
+        String s = "429 N High St, Columbus, OH"; //placeholder for Crime.GetAddress();
         Address address = getAddress(s);
-
+        Toast.makeText(getApplicationContext(), "LatLng: "
+                + new LatLng(address.getLatitude(), address.getLongitude()).toString(),
+                Toast.LENGTH_LONG).show();
         //marker adding using Address object
         mMap.addMarker(new MarkerOptions()
                 .draggable(false)
-                .title("Crime")
+                .title("Crime") //placeholder Crime.GetTitle()
                 .position(new LatLng(address.getLatitude(), address.getLongitude())));
 
     }
@@ -119,7 +121,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
 
         return realAdd;
     }
-    //ATTN: AUTO GENERATED STUFF NOT SURE IF NECESSARY - Jody
+    /*//ATTN: AUTO GENERATED STUFF NOT SURE IF NECESSARY - Jody
     @Override
     public void onStart() {
         super.onStart();
@@ -158,5 +160,5 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
-    }
+    }*/
 }
