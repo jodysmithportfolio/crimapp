@@ -1,32 +1,45 @@
 package com.somethingweird.crimapp;
 
+import android.util.Xml;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by iago on 3/27/2016.
+ * Created by Jody on 3/27/2016.
+ * Crime class TODO: May need to create separate interface
  */
-public class Crime {
+public class Crime implements CrimeInterface {
 
 
 
-    //TODO: Pull from XML in constructor like: Crime(XMLtree XML)
+
     private String Type;
     private String Location;
-    private Date Occured;
+    private Date Occurred;
     private Date Between;
-    private String Narrative;
+    private String Link;
     Calendar c = Calendar.getInstance();
 
     public Crime(){
         Type = "Crime";
         Location = "1810 N 4th St, Columbus, OH";
-        Occured = new Date();
-        Occured.setTime(c.getTimeInMillis());
+        Occurred = new Date();
+        Occurred.setTime(c.getTimeInMillis());
         Between = new Date();
         Between.setTime(c.getTimeInMillis());
-        Narrative = "There is no narrative available.";
+        Link = "There is no narrative available.";
     }
+
+
+
     public String getType() {
         return Type;
     }
@@ -35,16 +48,16 @@ public class Crime {
         return Location;
     }
 
-    public Date getOccured() {
-        return Occured;
+    public Date getOccurred() {
+        return Occurred;
     }
 
     public Date getBetween() {
         return Between;
     }
 
-    public String getNarrative() {
-        return Narrative;
+    public String getLink() {
+        return Link;
     }
 
     public void setType(String type) {
@@ -55,16 +68,16 @@ public class Crime {
         Location = location;
     }
 
-    public void setOccured(Date occured) {
-        Occured = occured;
+    public void setOccurred(Date occurred) {
+        Occurred = occurred;
     }
 
     public void setBetween(Date between) {
         Between = between;
     }
 
-    public void setNarrative(String narrative) {
-        Narrative = narrative;
+    public void setLink(String link) {
+        Link = link;
     }
 
 

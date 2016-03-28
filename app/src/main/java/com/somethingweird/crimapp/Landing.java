@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,10 +24,20 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 public class Landing extends AppCompatActivity {
@@ -48,22 +59,38 @@ public class Landing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
 
-        //Begin storage section
+        //Build crime DB
         String FileName = "CrimeDB";
 
-        // TODO: Save the XML to internal storage
-        try {
-            FileOutputStream fos = openFileOutput(FileName, Context.MODE_PRIVATE);
 
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        String path = "C:UsersiagoDownloadsTic-Tac-Toe-Using-FragmentsCrimappappsrcmain\n" +
+                "        esxmlcrimedb.xml";
+        FileInputStream in;
+        try {
+            in = new FileInputStream(path);
+
+            XmlPullParser parser = Xml.newPullParser();
+
+            int eventType = parser.getEventType();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            List<Crime> Crimes = new ArrayList<>();
+            while(eventType != XmlPullParser.END_DOCUMENT){
+                eventType = parser.getEventType();
+                Crime crime = parseXML(parser); //Bulds a single crime
+                Crimes.add(crime); //adds to list
+            }
+
+            in.close();
+        } catch (IOException | XmlPullParserException e) {
             e.printStackTrace();
         }
 
+
+
+        // TODO: Save the XML to internal storage
         //saveData();
-        //end storage section
+        //End initialize crime DB section
 
         Calendar calendar = Calendar.getInstance();
         int currenthour = calendar.get(Calendar.HOUR);
@@ -160,6 +187,82 @@ public class Landing extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), "Unable to find current Location", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /*
+        Uses supplied parser to parse a single crime
+        requires specific format:
+        <crime>
+	        <type>string</type>
+	        <location>string</location>
+	        <occured>Date</occured>
+	        <between>Date</between>
+	        <link>string</link>
+        </crime>
+     */
+    public Crime parseXML(XmlPullParser parser){
+        Crime crime = new Crime();
+        try {
+
+            int eventType = parser.getEventType();
+            SimpleDateFormat dateParser;
+            dateParser = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+            while(eventType!=XmlPullParser.END_DOCUMENT){
+                //Parse XML and build a single crime
+                if(eventType == XmlPullParser.START_TAG) {
+                    String tag = parser.getName();
+                    switch (tag) {
+                        case "type":
+                            parser.next();
+                            crime.setType(parser.getText());
+                            parser.next();
+                            break;
+                        case "location":
+                            parser.next();
+                            crime.setLocation(parser.getText());
+                            parser.next();
+                            break;
+                        case "occurred":
+                            parser.next();
+                            String occ = parser.getText();
+                            if(!occ.equals("N/A") &! occ.isEmpty()){
+                                crime.setOccurred(dateParser.parse(occ));
+                            }
+                            parser.next();
+                            break;
+                        case "link":
+                            parser.next();
+                            crime.setLink(parser.getText());
+                            parser.next();
+                            break;
+                        case "between":
+                            parser.next();
+                            String betw = parser.getText();
+                            if(!betw.equals("N/A") &! betw.isEmpty()){
+                                crime.setOccurred(dateParser.parse(betw));
+                            }
+                            parser.next();
+                            break;
+                        case "crime":
+                            parser.next();
+                            break;
+                    }
+
+
+                }
+                if(eventType == XmlPullParser.END_TAG){
+                    parser.next();
+                    break; //I'm so sorry but doing it another way would be less readable
+                }
+
+
+                eventType = parser.next();
+            }
+
+        } catch (ParseException | IOException | XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        return crime;
     }
 
     @Override
