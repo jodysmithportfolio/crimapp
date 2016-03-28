@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -98,9 +99,11 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                 .position(new LatLng(address.getLatitude(), address.getLongitude())));
 
         //Test list for addHeatMap
-        List<LatLng> list = null;
+        List<LatLng> list = new ArrayList<>();
         LatLng testLoc = new LatLng(40, -83);
         list.add(testLoc);
+        LatLng testLoc1 = new LatLng(42, -83);
+        list.add(testLoc1);
         addHeatMap(list);
 
     }
@@ -117,8 +120,8 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         // Create a heat map tile provider, passing it the listlngs of the crime locations.
         HeatmapTileProvider mProvider = new HeatmapTileProvider.Builder()
                 .data(list)
-                .radius(10)
-                .opacity(.3)
+                .radius(25)
+                .opacity(1)
                 .build();
         // Add a tile overlay to the map, using the heat map tile provider.
         TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
