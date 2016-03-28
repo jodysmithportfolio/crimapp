@@ -63,8 +63,8 @@ public class Landing extends AppCompatActivity {
         String FileName = "CrimeDB";
 
 
-        String path = "C:UsersiagoDownloadsTic-Tac-Toe-Using-FragmentsCrimappappsrcmain\n" +
-                "        esxmlcrimedb.xml";
+        String path = "C:\\Users\\iago\\Downloads\\Tic-Tac-Toe-Using-Fragments\\Crimapp\\app\\src\\main\\res\\xml\\crimedb.xml";
+
         FileInputStream in;
         try {
             in = new FileInputStream(path);
