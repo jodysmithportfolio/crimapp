@@ -1,10 +1,17 @@
 package com.somethingweird.crimapp;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.Xml;
 import android.widget.Toast;
@@ -17,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlay;
@@ -38,7 +46,8 @@ import java.util.Locale;
 public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     Float currentlat = null;
     Float currentlong = null;
-    String searchString;
+    String searchString ="Columbus";
+    boolean useUserLoc = false;
     private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +55,15 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_crime_map);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
+//            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
             searchString = extras.getString("SEARCH_DATA");
             if (searchString != null) {
-                if (searchString.startsWith("Current location:")) {
-                    searchString = searchString.substring(18);
-                    Log.d("Concat String", searchString);
-                    int commaPos = searchString.indexOf(",");
-                    currentlat = Float.parseFloat(searchString.substring(0, commaPos));
-                    currentlong = Float.parseFloat(searchString.substring(commaPos + 2, searchString.length()));
-                }
-                else{
-                    Address searchAddress = getAddress(searchString);
-                    currentlat = new Float(searchAddress.getLatitude());
-                    currentlong = new Float(searchAddress.getLongitude());
-                    Log.d("Current Loc",""+currentlat+" , "+currentlong);
-                }
+                Address searchAddress = getAddress(searchString);
+                currentlat = new Float(searchAddress.getLatitude());
+                currentlong = new Float(searchAddress.getLongitude());
+                Log.d("Current Loc",""+currentlat+" , "+currentlong);
             }
+            useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
         }
         Toast.makeText(getApplicationContext(), "searchSt ring: " + searchString, Toast.LENGTH_SHORT).show();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -90,7 +91,18 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         if (currentlat != null && currentlong != null) {
             currentLoc = new LatLng(currentlat, currentlong);
         }
-        mMap.addMarker(new MarkerOptions().position(currentLoc).title("Current Location"));
+        if(useUserLoc){
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Location currentlocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            try {
+                currentLoc = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            mMap.addMarker(new MarkerOptions().position(currentLoc).title(searchString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 14));
         //getCrimes
         //call method that pulls the crimes from the XML
