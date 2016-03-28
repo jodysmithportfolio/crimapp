@@ -31,12 +31,6 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     Float currentlong = null;
     String searchString;
     private GoogleMap mMap;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +47,12 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                     currentlat = Float.parseFloat(searchString.substring(0, commaPos));
                     currentlong = Float.parseFloat(searchString.substring(commaPos + 2, searchString.length()));
                 }
+                else{
+                    Address searchAddress = getAddress(searchString);
+                    currentlat = new Float(searchAddress.getLatitude());
+                    currentlong = new Float(searchAddress.getLongitude());
+                    Log.d("Current Loc",""+currentlat+" , "+currentlong);
+                }
             }
         }
         Toast.makeText(getApplicationContext(), "searchSt ring: " + searchString, Toast.LENGTH_SHORT).show();
@@ -60,9 +60,6 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -77,7 +74,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng currentLoc = new LatLng(40, -83);
+        LatLng currentLoc = new LatLng(40 ,-83);
         if (currentlat != null && currentlong != null) {
             currentLoc = new LatLng(currentlat, currentlong);
         }
@@ -86,24 +83,36 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         //getCrimes
         //call method that pulls the crimes from the XML
 
-        //address to Address Object
-        String s = "429 N High St, Columbus, OH"; //placeholder for Crime.GetAddress();
-        Address address = getAddress(s);
-        Toast.makeText(getApplicationContext(), "LatLng: "
-                + new LatLng(address.getLatitude(), address.getLongitude()).toString(),
-                Toast.LENGTH_LONG).show();
-        //marker adding using Address object
-        mMap.addMarker(new MarkerOptions()
-                .draggable(false)
-                .title("Crime") //placeholder Crime.GetTitle()
-                .position(new LatLng(address.getLatitude(), address.getLongitude())));
 
+        //
+        //fake addresses
+        String[] addresses = {
+                "Nationwide Arena",
+                "Caldwell Labs",
+                "The Ohio Union",
+                "Thompson Library",
+                "RPAC",
+                "Wilce Health Center",
+                "Ohio Stadium",
+                "Buckeye Donuts",
+                "Taylor Tower"
+        };//placeholder for Crime.GetAddress();
+        //address to Address Object
+        Address address;
         //Test list for addHeatMap
         List<LatLng> list = new ArrayList<>();
-        LatLng testLoc = new LatLng(40, -83);
-        list.add(testLoc);
-        LatLng testLoc1 = new LatLng(42, -83);
-        list.add(testLoc1);
+        LatLng testLoc;
+
+        for(String s : addresses){
+            address = getAddress(s);
+            //marker adding using Address object
+            mMap.addMarker(new MarkerOptions()
+                    .draggable(false)
+                    .title("Crime") //placeholder Crime.GetTitle()
+                    .position(new LatLng(address.getLatitude(), address.getLongitude())));
+            testLoc = new LatLng(address.getLatitude(),  address.getLongitude());
+            list.add(testLoc);
+        }
         addHeatMap(list);
 
     }
@@ -120,8 +129,8 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         // Create a heat map tile provider, passing it the listlngs of the crime locations.
         HeatmapTileProvider mProvider = new HeatmapTileProvider.Builder()
                 .data(list)
-                .radius(25)
-                .opacity(1)
+                .radius(50)
+                .opacity(0.4)
                 .build();
         // Add a tile overlay to the map, using the heat map tile provider.
         TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
@@ -137,59 +146,20 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
      * -Jody
      */
     private Address getAddress(String address) {
+
         Address realAdd = new Address(Locale.US);
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.US);
         List<Address> Add_List;
 
         //following would not run without try/catch
         try {
-            Add_List = geocoder.getFromLocationName(address, 1); //can return array of possibilities
+            Add_List = geocoder.getFromLocationName(address, 1,39.84,-83.23,40.17,-82.75); //can return array of possibilities
             realAdd = Add_List.get(0);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return realAdd;
     }
-    /*//ATTN: AUTO GENERATED STUFF NOT SURE IF NECESSARY - Jody
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "CrimeMap Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.somethingweird.crimapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "CrimeMap Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.somethingweird.crimapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }*/
 }
