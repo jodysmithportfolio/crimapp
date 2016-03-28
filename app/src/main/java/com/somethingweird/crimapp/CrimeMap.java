@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -84,22 +85,41 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 15));
         //getCrimes
         //call method that pulls the crimes from the XML
+        //TODO: WHen Crime class is done, gather crimes
 
         //address to Address Object
-        String s = "429 N High St, Columbus, OH"; //placeholder for Crime.GetAddress();
-        Address address = getAddress(s);
-        Toast.makeText(getApplicationContext(), "LatLng: "
-                + new LatLng(address.getLatitude(), address.getLongitude()).toString(),
-                Toast.LENGTH_LONG).show();
+        String[] s = new String[5];
+
+        s[0] = "35 W 5th Ave, Columbus, OH"; //placeholder for Crime.GetAddress();
+        s[1] = "447 N Champion Ave, Columbus, OH";
+        s[2] = "299 King Ave, Columbus, OH";
+        s[3] = "1151 N High St, Columbus, OH";
+        s[4] = "1151 N High St, Columbus, OH";
+        //TODO: replace above with crime array
+        for(String str : s){
+
+            Address address = getAddress(str);
+            if(address.hasLatitude())
+            {
+                mMap.addMarker(new MarkerOptions()
+                        .draggable(false)
+                        .title("Type: Theft\nTime: 12:00:00AM\nLocation: "+ str) //placeholder Crime.GetTitle(), TODO: Add details to title
+                        .position(new LatLng(address.getLatitude(), address.getLongitude())));
+            }
+
+        }
+
+        //Toast.makeText(getApplicationContext(), "LatLng: "
+        //        + new LatLng(address.getLatitude(), address.getLongitude()).toString(),
+        //        Toast.LENGTH_LONG).show();
         //marker adding using Address object
-        mMap.addMarker(new MarkerOptions()
-                .draggable(false)
-                .title("Crime") //placeholder Crime.GetTitle()
-                .position(new LatLng(address.getLatitude(), address.getLongitude())));
+
 
         //Test list for addHeatMap
-        List<LatLng> list = null;
-        LatLng testLoc = new LatLng(40, -83);
+        List<LatLng> list;
+        list = new ArrayList<>();
+        LatLng testLoc;
+        testLoc = new LatLng(40, -83);
         list.add(testLoc);
         addHeatMap(list);
 
@@ -136,12 +156,15 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     private Address getAddress(String address) {
         Address realAdd = new Address(Locale.US);
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.US);
-        List<Address> Add_List;
+        List<Address> addList;
 
         //following would not run without try/catch
         try {
-            Add_List = geocoder.getFromLocationName(address, 1); //can return array of possibilities
-            realAdd = Add_List.get(0);
+            addList = geocoder.getFromLocationName(address, 1);//can return array of possibilities
+            if(addList.size()>0){
+                realAdd = addList.get(0);
+            }
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,7 +172,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
 
         return realAdd;
     }
-    /*//ATTN: AUTO GENERATED STUFF NOT SURE IF NECESSARY - Jody
+    /*******************ATTN: AUTO GENERATED STUFF NOT SURE IF NECESSARY - Jody *******************
     @Override
     public void onStart() {
         super.onStart();

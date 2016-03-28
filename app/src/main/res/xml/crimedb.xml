@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<db>
+    <crime>
+        <type>Theft</type>
+        <location>1151 N High St</location>
+        <occured>3/20/2016 1:20:00 AM</occured>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4166241</link>
+    </crime>
+    <crime>
+        <type>Theft</type>
+        <location>299 King Ave</location>
+        <occured>3/20/2016 1:19:00 PM</occured>
+        <between>N/A</between>
+        <link>
+            http://www.columbuspolice.org/Reports/PublicReport?caseID=4166246</link>
+    </crime>
+    <crime>
+        <type>Theft</type>
+        <location>60 Mcmillen Ave</location>
+        <occured>3/21/2016 9:50:00 AM</occured>
+        <between>3/21/2016 9:50:00 AM</between>
+        <link>
+            http://www.columbuspolice.org/Reports/PublicReport?caseID=4166698
+        </link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>	32 W 8th Ave</location>
+        <occured>3/16/2016 9:00:00 AM</occured>
+        <between>3/19/2016 12:00:00 AM</between>
+        <link>
+            http://www.columbuspolice.org/Reports/PublicReport?caseID=4166264</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>720 W 3rd Ave</location>
+        <occured>3/21/2016 12:00:00 AM</occured>
+        <between>3/21/2016 5:00:00 AM</between>
+        <link>
+            Sometime overnight on Sunday/Monday, someone attempted to break into my Jeep while it was parked at my apartment complex (Tribeca Apartments). Thief attempted to put screwdriver in window jam and pry. Result was a cracked window, but due to the laminated glass, the window splintered throughout, but did not crack. Also, bent my window frame. I had the window replaced at Safelite auto in Worthington yesterday afternoon for $300.</link>
+    </crime>
+    <crime>
+        <type>Robbery</type>
+        <location>	35 W 5th Ave</location>
+        <occured>	3/21/2016 11:00:00 PM</occured>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4166311</link>
+    </crime>
+    <crime>
+        <type>Miscellaneous Offense</type>
+        <location>744 W 5th Ave</location>
+        <occured>3/23/2016 1:45:00 AM</occured>
+        <between>3/23/2016 2:14:30 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4166432</link>
+
+    </crime>
+</db>

@@ -2,6 +2,7 @@ package com.somethingweird.crimapp;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +20,12 @@ import android.widget.Toast;
 import android.location.Location;
 import android.location.LocationManager;
 import android.content.Context;
+
+import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
 
@@ -40,6 +47,23 @@ public class Landing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+
+        //Begin storage section
+        String FileName = "CrimeDB";
+
+        // TODO: Save the XML to internal storage
+        try {
+            FileOutputStream fos = openFileOutput(FileName, Context.MODE_PRIVATE);
+
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //saveData();
+        //end storage section
 
         Calendar calendar = Calendar.getInstance();
         int currenthour = calendar.get(Calendar.HOUR);
