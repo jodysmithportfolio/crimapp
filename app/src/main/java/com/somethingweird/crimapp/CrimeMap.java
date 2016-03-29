@@ -66,7 +66,12 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
             }
             useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
         }
-        Toast.makeText(getApplicationContext(), "searchSt ring: " + searchString, Toast.LENGTH_SHORT).show();
+        if(searchString!=null){
+            Toast.makeText(getApplicationContext(), "search around: " + searchString, Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "searching current location", Toast.LENGTH_LONG).show();
+        }
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
