@@ -1,11 +1,19 @@
 package com.somethingweird.crimapp;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.util.Xml;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -15,13 +23,22 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -29,40 +46,30 @@ import java.util.Locale;
 public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     Float currentlat = null;
     Float currentlong = null;
-    String searchString;
+    String searchString ="Columbus";
+    boolean useUserLoc = false;
     private GoogleMap mMap;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_map);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
+//            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
             searchString = extras.getString("SEARCH_DATA");
             if (searchString != null) {
-                if (searchString.startsWith("Current location:")) {
-                    searchString = searchString.substring(18);
-                    Log.d("Concat String", searchString);
-                    int commaPos = searchString.indexOf(",");
-                    currentlat = Float.parseFloat(searchString.substring(0, commaPos));
-                    currentlong = Float.parseFloat(searchString.substring(commaPos + 2, searchString.length()));
-                }
+                Address searchAddress = getAddress(searchString);
+                currentlat = new Float(searchAddress.getLatitude());
+                currentlong = new Float(searchAddress.getLongitude());
+                Log.d("Current Loc",""+currentlat+" , "+currentlong);
             }
+            useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
         }
         Toast.makeText(getApplicationContext(), "searchSt ring: " + searchString, Toast.LENGTH_SHORT).show();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -77,50 +84,94 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng currentLoc = new LatLng(40, -83);
+
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setMyLocationEnabled(true);
+        LatLng currentLoc = new LatLng(40 ,-83);
         if (currentlat != null && currentlong != null) {
             currentLoc = new LatLng(currentlat, currentlong);
         }
-        mMap.addMarker(new MarkerOptions().position(currentLoc).title("Current Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 15));
+        if(useUserLoc){
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Location currentlocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            try {
+                currentLoc = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            mMap.addMarker(new MarkerOptions().position(currentLoc).title(searchString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 14));
         //getCrimes
         //call method that pulls the crimes from the XML
-        //TODO: WHen Crime class is done, gather crimes
 
-        //address to Address Object
-        String[] s = new String[5];
+        //Build crime DB
+        String FileName = "CrimeDB";
 
-        s[0] = "35 W 5th Ave, Columbus, OH"; //placeholder for Crime.GetAddress();
-        s[1] = "447 N Champion Ave, Columbus, OH";
-        s[2] = "299 King Ave, Columbus, OH";
-        s[3] = "1151 N High St, Columbus, OH";
-        s[4] = "1151 N High St, Columbus, OH";
-        //TODO: replace above with crime array
-        for(String str : s){
+        //CHANGED FROM USING Windows file directory to using android res
+        //String path = "C:\\Users\\iago\\Downloads\\Tic-Tac-Toe-Using-Fragments\\Crimapp\\app\\src\\main\\res\\xml\\crimedb.xml";
 
-            Address address = getAddress(str);
-            if(address.hasLatitude())
-            {
-                mMap.addMarker(new MarkerOptions()
-                        .draggable(false)
-                        .title("Type: Theft\nTime: 12:00:00AM\nLocation: "+ str) //placeholder Crime.GetTitle(), TODO: Add details to title
-                        .position(new LatLng(address.getLatitude(), address.getLongitude())));
+        InputStream in;
+        List<Crime> Crimes = new ArrayList<>();
+
+        try {
+            in = getResources().openRawResource(R.raw.crimedb);
+
+            XmlPullParser parser = Xml.newPullParser();
+
+            int eventType = parser.getEventType();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            while(eventType != XmlPullParser.END_DOCUMENT){
+                eventType = parser.getEventType();
+                Crime crime = parseXML(parser); //Bulds a single crime
+                Crimes.add(crime); //adds to list
             }
 
+            in.close();
+        } catch (IOException | XmlPullParserException e) {
+            e.printStackTrace();
         }
 
-        //Toast.makeText(getApplicationContext(), "LatLng: "
-        //        + new LatLng(address.getLatitude(), address.getLongitude()).toString(),
-        //        Toast.LENGTH_LONG).show();
-        //marker adding using Address object
 
-
+        // TODO: Save the XML to internal storage
+        //saveData();
+        //End initialize crime DB section
+        //
+        //fake addresses
+        String[] addresses = {
+                "Nationwide Arena",
+                "Caldwell Labs",
+                "The Ohio Union",
+                "Thompson Library",
+                "RPAC",
+                "Wilce Health Center",
+                "Ohio Stadium",
+                "Buckeye Donuts",
+                "Taylor Tower"
+        };//placeholder for Crime.GetAddress();
+        //address to Address Object
+        Address address;
         //Test list for addHeatMap
-        List<LatLng> list;
-        list = new ArrayList<>();
+        List<LatLng> list = new ArrayList<>();
         LatLng testLoc;
-        testLoc = new LatLng(40, -83);
-        list.add(testLoc);
+
+        for(Crime c : Crimes){
+            address = getAddress(c.getLocation());
+            //marker adding using Address object
+            if(address.hasLatitude()&&address.hasLongitude()) {
+                mMap.addMarker(new MarkerOptions()
+                        .draggable(false)
+                        .title(c.getType()) //placeholder Crime.GetTitle()
+                        .position(new LatLng(address.getLatitude(), address.getLongitude())));
+                testLoc = new LatLng(address.getLatitude(), address.getLongitude());
+                list.add(testLoc);
+            }else{
+                Log.d("FAIL", "NO LAT/LONG for "+c.getLocation());
+            }
+        }
         addHeatMap(list);
 
     }
@@ -137,8 +188,8 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         // Create a heat map tile provider, passing it the listlngs of the crime locations.
         HeatmapTileProvider mProvider = new HeatmapTileProvider.Builder()
                 .data(list)
-                .radius(10)
-                .opacity(.3)
+                .radius(50)
+                .opacity(0.4)
                 .build();
         // Add a tile overlay to the map, using the heat map tile provider.
         TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
@@ -154,13 +205,14 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
      * -Jody
      */
     private Address getAddress(String address) {
+
         Address realAdd = new Address(Locale.US);
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.US);
         List<Address> addList;
 
         //following would not run without try/catch
         try {
-            addList = geocoder.getFromLocationName(address, 1);//can return array of possibilities
+            addList = geocoder.getFromLocationName(address, 1, 39.84, -83.23, 40.17, -82.75); //can return array of possibilities
             if(addList.size()>0){
                 realAdd = addList.get(0);
             }
@@ -172,44 +224,70 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
 
         return realAdd;
     }
-    /*******************ATTN: AUTO GENERATED STUFF NOT SURE IF NECESSARY - Jody *******************
-    @Override
-    public void onStart() {
-        super.onStart();
+    public Crime parseXML(XmlPullParser parser){
+        Crime crime = new Crime();
+        try {
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "CrimeMap Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.somethingweird.crimapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
+            int eventType = parser.getEventType();
+            SimpleDateFormat dateParser;
+            dateParser = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+            while(eventType!=XmlPullParser.END_DOCUMENT){
+                //Parse XML and build a single crime
+                if(eventType == XmlPullParser.START_TAG) {
+                    String tag = parser.getName();
+                    switch (tag) {
+                        case "type":
+                            parser.next();
+                            crime.setType(parser.getText());
+                            parser.next();
+                            break;
+                        case "location":
+                            parser.next();
+                            crime.setLocation(parser.getText());
+                            parser.next();
+                            break;
+                        case "occurred":
+                            parser.next();
+                            String occ = parser.getText();
+                            if(!occ.equals("N/A") &! occ.isEmpty()){
+                                crime.setOccurred(dateParser.parse(occ));
+                            }
+                            parser.next();
+                            break;
+                        case "link":
+                            parser.next();
+                            crime.setLink(parser.getText());
+                            parser.next();
+                            break;
+                        case "between":
+                            parser.next();
+                            String betw = parser.getText();
+                            if(!betw.equals("N/A") &! betw.isEmpty()){
+                                crime.setOccurred(dateParser.parse(betw));
+                            }
+                            parser.next();
+                            break;
+                        case "crime":
+                            parser.next();
+                            break;
+                    }
+
+
+                }
+                if(eventType == XmlPullParser.END_TAG){
+                    parser.next();
+                    break; //I'm so sorry but doing it another way would be less readable
+                }
+
+
+                eventType = parser.next();
+            }
+
+        } catch (ParseException | IOException | XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        return crime;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "CrimeMap Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.somethingweird.crimapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }*/
 }

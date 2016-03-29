@@ -22,7 +22,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.content.Context;
 
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -62,12 +62,12 @@ public class Landing extends AppCompatActivity {
         //Build crime DB
         String FileName = "CrimeDB";
 
+        //CHANGED FROM USING Windows file directory to using android res
+        //String path = "C:\\Users\\iago\\Downloads\\Tic-Tac-Toe-Using-Fragments\\Crimapp\\app\\src\\main\\res\\xml\\crimedb.xml";
 
-        String path = "C:\\Users\\iago\\Downloads\\Tic-Tac-Toe-Using-Fragments\\Crimapp\\app\\src\\main\\res\\xml\\crimedb.xml";
-
-        FileInputStream in;
+        InputStream in;
         try {
-            in = new FileInputStream(path);
+            in = getResources().openRawResource(R.raw.crimedb);
 
             XmlPullParser parser = Xml.newPullParser();
 
@@ -132,7 +132,9 @@ public class Landing extends AppCompatActivity {
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertCurrentLocation();
+                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+                searchMapIntent.putExtra("CURRENT_LOC", true);
+                startActivity(searchMapIntent);
             }
         });
         aboutButton = (Button) findViewById(R.id.aboutbutton);
@@ -153,40 +155,6 @@ public class Landing extends AppCompatActivity {
                 startActivity(searchMapIntent);
             }
         });
-        insertCurrentLocation();
-    }
-
-    private void insertCurrentLocation() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        // get the last know location from location manager
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-        Log.d(TAG,"Permissions Check: "+permissionCheck);
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                Log.d(TAG,"Give explanation?");
-
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},permissionCheck);
-            }
-        }
-        currentlocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        // now get the lat/lon from the location and do something with it.
-        if(currentlocation != null) {
-            Log.d(TAG, "Lat:" + currentlocation.getLatitude() + "  Long:" + currentlocation.getLongitude());
-            locationbox.setText("Current location: " + currentlocation.getLatitude() + ", " + currentlocation.getLongitude(), TextView.BufferType.EDITABLE);
-            Toast.makeText(getApplicationContext(), "Current Location Inserted", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(), "Unable to find current Location", Toast.LENGTH_SHORT).show();
-        }
     }
 
     /*
@@ -268,7 +236,6 @@ public class Landing extends AppCompatActivity {
     @Override
     public void onStart() {
         Log.d(TAG,"onStart Called");
-        insertCurrentLocation();
         super.onStart();
     }
 
@@ -281,7 +248,6 @@ public class Landing extends AppCompatActivity {
     @Override
     public void onResume() {
         Log.d(TAG,"onResume Called");
-        insertCurrentLocation();
         super.onResume();
     }
 

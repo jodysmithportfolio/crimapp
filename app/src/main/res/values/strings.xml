@@ -3,14 +3,12 @@
     <string name="app_name">Crimapp</string>
     <string name="call911text">Call 911</string>
     <string name="abouttext">About</string>
-    <string name="search_by_time_text">Search By Time</string>
-    <string name="search_by_location_text">Search By Location</string>
-    <string name="getlocationboxstring">Get Location</string>
+    <string name="search_by_location_text">Type Location Here</string>
+    <string name="getlocationboxstring">Search by Current Location</string>
     <string name="backbuttontext">Back</string>
     <string name="lengend">Legend</string>
     <string name="howtousetext">How to Use</string>
     <string name="aboutustext">CrimApp was developed by Cyriac, Jody, and Daniel.</string>
     <string name="title_activity_crime_map">Crime Map</string>
-    <string name="searchbylocbuttonstring">Search By Location</string>
-    <string name="search_by_time_button_string">Search By Time</string>
+    <string name="search_button_string">Search</string>
 </resources>

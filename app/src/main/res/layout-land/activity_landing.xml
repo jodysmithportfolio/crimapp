@@ -61,7 +61,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/searchbylocbuttonstring"
+        android:text="@string/search_button_string"
         android:id="@+id/searchbylocbutton"
         android:layout_alignTop="@+id/searchbylocationbox"
         android:layout_alignEnd="@+id/meridianpicker" />
@@ -78,7 +78,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/search_by_time_button_string"
+        android:text="@string/search_button_string"
         android:id="@+id/searchbytimebutton"
         android:layout_alignBottom="@+id/minutepicker"
         android:layout_alignStart="@+id/meridianpicker" />
