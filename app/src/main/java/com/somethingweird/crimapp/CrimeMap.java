@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
+import com.google.maps.android.ui.IconGenerator;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -104,67 +105,23 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
             mMap.addMarker(new MarkerOptions().position(currentLoc).title(searchString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 14));
-        //getCrimes
-        //call method that pulls the crimes from the XML
-
-        //Build crime DB
-        String FileName = "CrimeDB";
-
-        //CHANGED FROM USING Windows file directory to using android res
-        //String path = "C:\\Users\\iago\\Downloads\\Tic-Tac-Toe-Using-Fragments\\Crimapp\\app\\src\\main\\res\\xml\\crimedb.xml";
-
-        InputStream in;
-        List<Crime> Crimes = new ArrayList<>();
-
-        try {
-            in = getResources().openRawResource(R.raw.crimedb);
-
-            XmlPullParser parser = Xml.newPullParser();
-
-            int eventType = parser.getEventType();
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(in, null);
-            while(eventType != XmlPullParser.END_DOCUMENT){
-                eventType = parser.getEventType();
-                Crime crime = parseXML(parser); //Bulds a single crime
-                Crimes.add(crime); //adds to list
-            }
-
-            in.close();
-        } catch (IOException | XmlPullParserException e) {
-            e.printStackTrace();
-        }
 
 
-        // TODO: Save the XML to internal storage
-        //saveData();
-        //End initialize crime DB section
-        //
-        //fake addresses
-        String[] addresses = {
-                "Nationwide Arena",
-                "Caldwell Labs",
-                "The Ohio Union",
-                "Thompson Library",
-                "RPAC",
-                "Wilce Health Center",
-                "Ohio Stadium",
-                "Buckeye Donuts",
-                "Taylor Tower"
-        };//placeholder for Crime.GetAddress();
-        //address to Address Object
+
+        //Crime Marker Adding
+        List<Crime> Crimes = Crime.getCrimes(); //static crime list from Crimes.java
         Address address;
         //Test list for addHeatMap
         List<LatLng> list = new ArrayList<>();
         LatLng testLoc;
-
         for(Crime c : Crimes){
             address = getAddress(c.getLocation());
             //marker adding using Address object
             if(address.hasLatitude()&&address.hasLongitude()) {
                 mMap.addMarker(new MarkerOptions()
                         .draggable(false)
-                        .title(c.getType()) //placeholder Crime.GetTitle()
+                        .title(c.getType())
+                        .snippet(c.getOccurred().toString())
                         .position(new LatLng(address.getLatitude(), address.getLongitude())));
                 testLoc = new LatLng(address.getLatitude(), address.getLongitude());
                 list.add(testLoc);
@@ -210,7 +167,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.US);
         List<Address> addList;
 
-        //following would not run without try/catch
+
         try {
             addList = geocoder.getFromLocationName(address, 1, 39.84, -83.23, 40.17, -82.75); //can return array of possibilities
             if(addList.size()>0){
@@ -224,70 +181,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
 
         return realAdd;
     }
-    public Crime parseXML(XmlPullParser parser){
-        Crime crime = new Crime();
-        try {
 
-            int eventType = parser.getEventType();
-            SimpleDateFormat dateParser;
-            dateParser = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
-            while(eventType!=XmlPullParser.END_DOCUMENT){
-                //Parse XML and build a single crime
-                if(eventType == XmlPullParser.START_TAG) {
-                    String tag = parser.getName();
-                    switch (tag) {
-                        case "type":
-                            parser.next();
-                            crime.setType(parser.getText());
-                            parser.next();
-                            break;
-                        case "location":
-                            parser.next();
-                            crime.setLocation(parser.getText());
-                            parser.next();
-                            break;
-                        case "occurred":
-                            parser.next();
-                            String occ = parser.getText();
-                            if(!occ.equals("N/A") &! occ.isEmpty()){
-                                crime.setOccurred(dateParser.parse(occ));
-                            }
-                            parser.next();
-                            break;
-                        case "link":
-                            parser.next();
-                            crime.setLink(parser.getText());
-                            parser.next();
-                            break;
-                        case "between":
-                            parser.next();
-                            String betw = parser.getText();
-                            if(!betw.equals("N/A") &! betw.isEmpty()){
-                                crime.setOccurred(dateParser.parse(betw));
-                            }
-                            parser.next();
-                            break;
-                        case "crime":
-                            parser.next();
-                            break;
-                    }
-
-
-                }
-                if(eventType == XmlPullParser.END_TAG){
-                    parser.next();
-                    break; //I'm so sorry but doing it another way would be less readable
-                }
-
-
-                eventType = parser.next();
-            }
-
-        } catch (ParseException | IOException | XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        return crime;
-    }
 
 
 }

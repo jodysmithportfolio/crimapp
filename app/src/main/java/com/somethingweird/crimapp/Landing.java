@@ -61,10 +61,6 @@ public class Landing extends AppCompatActivity {
 
         //Build crime DB
         String FileName = "CrimeDB";
-
-        //CHANGED FROM USING Windows file directory to using android res
-        //String path = "C:\\Users\\iago\\Downloads\\Tic-Tac-Toe-Using-Fragments\\Crimapp\\app\\src\\main\\res\\xml\\crimedb.xml";
-
         InputStream in;
         try {
             in = getResources().openRawResource(R.raw.crimedb);
@@ -74,11 +70,11 @@ public class Landing extends AppCompatActivity {
             int eventType = parser.getEventType();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(in, null);
-            List<Crime> Crimes = new ArrayList<>();
+
             while(eventType != XmlPullParser.END_DOCUMENT){
                 eventType = parser.getEventType();
                 Crime crime = parseXML(parser); //Bulds a single crime
-                Crimes.add(crime); //adds to list
+                Crime.addCrime(crime); //adds to list
             }
 
             in.close();

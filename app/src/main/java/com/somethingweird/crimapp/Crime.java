@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Jody on 3/27/2016.
@@ -21,6 +23,10 @@ public class Crime implements CrimeInterface {
 
 
 
+    /**
+     * List of all crimes
+     */
+    public static List<Crime> Crimes = new ArrayList<>();
     private String Type;
     private String Location;
     private Date Occurred;
@@ -35,10 +41,16 @@ public class Crime implements CrimeInterface {
         Occurred.setTime(c.getTimeInMillis());
         Between = new Date();
         Between.setTime(c.getTimeInMillis());
-        Link = "There is no narrative available.";
+        Link = "No Link Available.";
     }
 
+    public static List<Crime> getCrimes() {
+        return Crimes;
+    }
 
+    public static void addCrime(Crime crime) {
+        Crimes.add(crime);
+    }
 
     public String getType() {
         return Type;
