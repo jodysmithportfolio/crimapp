@@ -8,6 +8,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
@@ -125,67 +128,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
             mMap.addMarker(new MarkerOptions().position(currentLoc).title(searchString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 14));
-
-
-
-        //Crime Marker Adding
-        List<Crime> Crimes = Crime.getCrimes(); //static crime list from Crimes.java
-        Address address;
-        //Test list for addHeatMap
-        List<LatLng> list = new ArrayList<>();
-        LatLng testLoc;
-        for(Crime c : Crimes){
-            if(time){
-                Log.d("LOCATION",c.getLocation());
-                Calendar tempCal = new GregorianCalendar();
-                tempCal.setTime(c.getOccurred());
-                Calendar crimeTime = new GregorianCalendar();
-                crimeTime.setTime(new Date());
-                crimeTime.set(Calendar.HOUR_OF_DAY,tempCal.get(Calendar.HOUR_OF_DAY));
-                crimeTime.set(Calendar.MINUTE,tempCal.get(Calendar.MINUTE));
-                Calendar searchTime = new GregorianCalendar();
-                float searchTimeFloat;
-                float crimeTimeFloat;
-                searchTimeFloat = searchHour + searchMin/60;
-                crimeTimeFloat = (float)crimeTime.get(Calendar.HOUR_OF_DAY) + (float)crimeTime.get(Calendar.MINUTE)/60;
-                if(!timeCompare(searchTimeFloat,crimeTimeFloat)){
-                    Log.d("NOT NEAR searchTime", Float.toString(crimeTimeFloat));
-//                    continue;
-                }else{
-                    Log.d("YES! NEAR searchTime", Float.toString(crimeTimeFloat));
-                    address = getAddress(c.getLocation());
-                    //marker adding using Address object
-                    if (address.hasLatitude() && address.hasLongitude()) {
-                        mMap.addMarker(new MarkerOptions()
-                                .draggable(false)
-                                .title(c.getType())
-                                .snippet(c.getOccurred().toString())
-                                .position(new LatLng(address.getLatitude(), address.getLongitude())));
-                        testLoc = new LatLng(address.getLatitude(), address.getLongitude());
-                        list.add(testLoc);
-                    } else {
-                        Log.d("FAIL", "NO LAT/LONG for " + c.getLocation());
-                    }
-                }
-                Log.d("   ","    ");
-            }else {
-                address = getAddress(c.getLocation());
-                //marker adding using Address object
-                if (address.hasLatitude() && address.hasLongitude()) {
-                    mMap.addMarker(new MarkerOptions()
-                            .draggable(false)
-                            .title(c.getType())
-                            .snippet(c.getOccurred().toString())
-                            .position(new LatLng(address.getLatitude(), address.getLongitude())));
-                    testLoc = new LatLng(address.getLatitude(), address.getLongitude());
-                    list.add(testLoc);
-                } else {
-                    Log.d("FAIL", "NO LAT/LONG for " + c.getLocation());
-                }
-            }
-        }
-        Log.d("LIST LENGTH",Integer.toString(list.size()));
-        addHeatMap(list);
+        new addCrimes().execute(googleMap);
     }
 
     /**
@@ -244,6 +187,108 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         return false;
     }
 
+    class addCrimes extends AsyncTask<GoogleMap, String, String> {
 
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+        }
+
+        protected String doInBackground(GoogleMap... googleMaps) {
+            addCrimesOnMap(googleMaps[0]);
+            return null;
+        }
+
+        public void addCrimesOnMap(GoogleMap googleMap){
+            mMap = googleMap;
+            //Crime Marker Adding
+            List<Crime> Crimes = Crime.getCrimes(); //static crime list from Crimes.java
+            Address address;
+            //Test list for addHeatMap
+            List<LatLng> list = new ArrayList<>();
+            LatLng testLoc;
+            for(Crime c : Crimes){
+                if(time){
+                    Log.d("LOCATION",c.getLocation());
+                    Calendar tempCal = new GregorianCalendar();
+                    tempCal.setTime(c.getOccurred());
+                    Calendar crimeTime = new GregorianCalendar();
+                    crimeTime.setTime(new Date());
+                    crimeTime.set(Calendar.HOUR_OF_DAY,tempCal.get(Calendar.HOUR_OF_DAY));
+                    crimeTime.set(Calendar.MINUTE,tempCal.get(Calendar.MINUTE));
+                    Calendar searchTime = new GregorianCalendar();
+                    float searchTimeFloat;
+                    float crimeTimeFloat;
+                    searchTimeFloat = searchHour + searchMin/60;
+                    crimeTimeFloat = (float)crimeTime.get(Calendar.HOUR_OF_DAY) + (float)crimeTime.get(Calendar.MINUTE)/60;
+                    if(!timeCompare(searchTimeFloat,crimeTimeFloat)){
+                        Log.d("NOT NEAR searchTime", Float.toString(crimeTimeFloat));
+                    }else{
+                        Log.d("YES! NEAR searchTime", Float.toString(crimeTimeFloat));
+                        address = getAddress(c.getLocation());
+                        //marker adding using Address object
+                        if (address.hasLatitude() && address.hasLongitude()) {
+                            final Address add =  address;
+                            final Crime cr = c;
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    mMap.addMarker(new MarkerOptions()
+                                            .draggable(false)
+                                            .title(cr.getType())
+                                            .snippet(cr.getOccurred().toString())
+                                            .position(new LatLng(add.getLatitude(), add.getLongitude())));
+                                }
+                            });
+                            testLoc = new LatLng(address.getLatitude(), address.getLongitude());
+                            list.add(testLoc);
+                        } else {
+                            Log.d("FAIL", "NO LAT/LONG for " + c.getLocation());
+                        }
+                    }
+                    Log.d("   ","    ");
+                }else {
+                    address = getAddress(c.getLocation());
+                    //marker adding using Address object
+                    if (address.hasLatitude() && address.hasLongitude()) {
+                        final Address add =  address;
+                        final Crime cr = c;
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                mMap.addMarker(new MarkerOptions()
+                                        .draggable(false)
+                                        .title(cr.getType())
+                                        .snippet(cr.getOccurred().toString())
+                                        .position(new LatLng(add.getLatitude(), add.getLongitude())));
+                            }
+                        });
+                        testLoc = new LatLng(address.getLatitude(), address.getLongitude());
+                        list.add(testLoc);
+                    } else {
+                        Log.d("FAIL", "NO LAT/LONG for " + c.getLocation());
+                    }
+                }
+            }
+            if(list.size()<1){
+                Log.d("LIST LENGTH", Integer.toString(list.size()));
+                Snackbar.make(findViewById(android.R.id.content), "No crimes that matches your criteria", Snackbar.LENGTH_LONG)
+                        .show();
+            }else{
+                final List l = list;
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        addHeatMap(l);
+                    }
+                });
+            }
+
+        }
+
+
+                @Override
+        protected void onPostExecute(String result) {
+            super .onPostExecute(result);
+
+        }
+    }
 
 }
