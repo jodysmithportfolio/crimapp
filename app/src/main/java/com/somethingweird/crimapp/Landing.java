@@ -37,13 +37,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
 public class Landing extends AppCompatActivity {
     Button callButton;
     Button getLocationButton;
-    Button searchButton;
+    Button searchByLocButton;
+    Button searchByTimeButton;
     Button aboutButton;
     NumberPicker hourpick;
     NumberPicker minpick;
@@ -142,12 +144,34 @@ public class Landing extends AppCompatActivity {
             }
         });
 
-        searchButton = (Button) findViewById(R.id.searchbylocbutton);
-        searchButton.setOnClickListener(new View.OnClickListener() {
+        searchByLocButton = (Button) findViewById(R.id.searchbylocbutton);
+        searchByLocButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
                 searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
+                startActivity(searchMapIntent);
+            }
+        });
+        searchByTimeButton = (Button) findViewById(R.id.search_by_time_button);
+        searchByTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+                float hour = hourpick.getValue();
+                float min = hourpick.getValue();
+                Calendar searchTime = new GregorianCalendar();
+                searchTime.set(Calendar.HOUR, (int) hour);
+                searchTime.set(Calendar.MINUTE, (int) min);
+//                searchTime.setTime();
+                if(meridianpick.getSelectedItem()=="PM"){
+                    searchTime.set(Calendar.AM_PM,Calendar.PM);
+                }else{
+                    searchTime.set(Calendar.AM_PM,Calendar.AM);
+                }
+                searchMapIntent.putExtra("SEARCH_TIME", true);
+                searchMapIntent.putExtra("SEARCH_HOUR", (float)searchTime.get(Calendar.HOUR_OF_DAY));
+                searchMapIntent.putExtra("SEARCH_MIN", (float)searchTime.get(Calendar.MINUTE));
                 startActivity(searchMapIntent);
             }
         });
@@ -203,7 +227,7 @@ public class Landing extends AppCompatActivity {
                             parser.next();
                             String betw = parser.getText();
                             if(!betw.equals("N/A") &! betw.isEmpty()){
-                                crime.setOccurred(dateParser.parse(betw));
+                                crime.setBetween(dateParser.parse(betw));
                             }
                             parser.next();
                             break;

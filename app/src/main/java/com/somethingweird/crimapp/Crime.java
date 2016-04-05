@@ -36,7 +36,7 @@ public class Crime implements CrimeInterface {
 
     public Crime(){
         Type = "Crime";
-        Location = "1810 N 4th St, Columbus, OH";
+        Location = "1810 N 4th St";
         Occurred = new Date();
         Occurred.setTime(c.getTimeInMillis());
         Between = new Date();
