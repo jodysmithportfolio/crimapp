@@ -11,4 +11,7 @@
     <string name="aboutustext">CrimApp was developed by Cyriac, Jody, and Daniel.</string>
     <string name="title_activity_crime_map">Crime Map</string>
     <string name="search_button_string">Search</string>
+    <string name="search_directions_text">Destination (if any)</string>
+    <string name="search_directions_buttons">Get Directions</string>
+
 </resources>

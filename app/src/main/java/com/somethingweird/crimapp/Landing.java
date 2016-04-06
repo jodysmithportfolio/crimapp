@@ -52,6 +52,8 @@ public class Landing extends AppCompatActivity {
     Button searchByLocButton;
     Button searchByTimeButton;
     Button aboutButton;
+    Button getDirectionsButton;
+    EditText destinationbox;
     NumberPicker hourpick;
     NumberPicker minpick;
     Spinner meridianpick;
@@ -96,6 +98,7 @@ public class Landing extends AppCompatActivity {
         int spinnerposition = adapter.getPosition(currentmers);
         meridianpick.setSelection(spinnerposition);
         locationbox = (EditText) findViewById(R.id.searchbylocationbox);
+        destinationbox = (EditText) findViewById(R.id.destEditText);
         callButton = (Button) findViewById(R.id.call911);
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +130,17 @@ public class Landing extends AppCompatActivity {
             public void onClick(View v) {
                 Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
                 searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
+                startActivity(searchMapIntent);
+            }
+        });
+        getDirectionsButton = (Button) findViewById(R.id.getDirButton);
+        getDirectionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+                searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
+                searchMapIntent.putExtra("DIRECTIONS",true);
+                searchMapIntent.putExtra("DESTINATION",destinationbox.getText().toString());
                 startActivity(searchMapIntent);
             }
         });

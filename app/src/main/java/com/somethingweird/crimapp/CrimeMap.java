@@ -1,52 +1,44 @@
 package com.somethingweird.crimapp;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.util.Xml;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
-import com.google.maps.android.ui.IconGenerator;
 
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -54,6 +46,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     Float currentlat = null;
     Float currentlong = null;
     String searchString ="Columbus";
+    String destination = "Columbus";
     boolean useUserLoc = false;
     private GoogleMap mMap;
     boolean time = false;
@@ -83,6 +76,9 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                 searchMin = extras.getFloat("SEARCH_MIN");
             }
             useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
+            if(extras.getBoolean("DIRECTIONS")){
+                destination = extras.getString("DESTINATION");
+            }
         }
         if(searchString!=null){
             Toast.makeText(getApplicationContext(), "search around: " + searchString, Toast.LENGTH_LONG).show();
@@ -128,13 +124,16 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
             mMap.addMarker(new MarkerOptions().position(currentLoc).title(searchString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 14));
-        new addCrimes().execute(googleMap);
+        new addCrimes().execute();
+        Log.d("SOURCE",searchString);
+        Log.d("DEST",destination);
+        new addDirectionLayer().execute(searchString,destination);
     }
 
     /**
      * Method to add the heat map layer to the map.
      *
-     * REQUIRES: @code(List<LatLng> list) a collection of LatLng objects representing the crimes
+     * REQUIRES: @code(List<LatLng> list) a collectio3956n of LatLng objects representing the crimes
      * in the database.
      *
      * RETURNS: void.
@@ -187,20 +186,20 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         return false;
     }
 
-    class addCrimes extends AsyncTask<GoogleMap, String, String> {
+    private class addCrimes extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
         }
 
-        protected String doInBackground(GoogleMap... googleMaps) {
-            addCrimesOnMap(googleMaps[0]);
+        protected String doInBackground(String... args) {
+            addCrimesOnMap();
             return null;
         }
 
-        public void addCrimesOnMap(GoogleMap googleMap){
-            mMap = googleMap;
+        public void addCrimesOnMap(){
+            //mMap = googleMap;
             //Crime Marker Adding
             List<Crime> Crimes = Crime.getCrimes(); //static crime list from Crimes.java
             Address address;
@@ -273,22 +272,139 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                 Snackbar.make(findViewById(android.R.id.content), "No crimes that matches your criteria", Snackbar.LENGTH_LONG)
                         .show();
             }else{
-                final List l = list;
+                final List<LatLng> l = list;
                 runOnUiThread(new Runnable() {
                     public void run() {
                         addHeatMap(l);
                     }
                 });
+//                try{
+//                    URL url = new URL("http://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los%20Angeles,CA&sensor=false");
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//                GenericUrl url = new GenericUrl("http://maps.googleapis.com/maps/api/directions/json");
+//                url.put("origin", origin);
+//                url.put("destination", destination);
+//                url.put("sensor",false);
             }
 
         }
-
-
-                @Override
+        @Override
         protected void onPostExecute(String result) {
             super .onPostExecute(result);
 
         }
     }
 
+    private class addDirectionLayer extends AsyncTask<String, String, List<LatLng>> {
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+        }
+
+
+        protected List<LatLng> doInBackground(String... locs) {
+            String origin = locs[0];
+            String destination = locs[1];
+            List<LatLng> dirList = new ArrayList<>();
+            try {
+                String urlString= "http://maps.googleapis.com/maps/api/directions/xml?origin=\""+
+                        URLEncoder.encode(origin, "UTF-8")+
+                        "\"&destination=\""+
+                        URLEncoder.encode(destination, "UTF-8")+
+                        "\"&sensor=false";
+                Log.d("URL DIRECTION", urlString);
+                URL uri = new URL(urlString);
+                InputStream is;
+                HttpURLConnection conn = (HttpURLConnection) uri.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
+                is = conn.getInputStream();
+                XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
+                XmlPullParser parser = xmlFactoryObject.newPullParser();
+                parser.setInput(is, null);
+                String name;
+                int eventType = parser.getEventType();
+                boolean cont = false;
+                while(eventType!=XmlPullParser.END_DOCUMENT){
+                    name = parser.getName();
+                    if(eventType==XmlPullParser.START_TAG) {
+                        if("overview_polyline".equals(name)){
+                            cont = true;
+                        }
+                        if("points".equals(name)&&cont){
+                            dirList.addAll(decodePoly(parser.nextText()));
+                        }//some else
+                    }
+                    eventType = parser.next();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            final List<LatLng> list = dirList;
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    try {
+                        LatLng orgsrc = list.get(0);
+                        for (int i = 0; i < list.size() - 1; i++) {
+                            LatLng src = list.get(i);
+                            LatLng dest = list.get(i + 1);
+
+                            // mMap is the Map Object
+                            Polyline line = mMap.addPolyline(
+                                    new PolylineOptions().add(
+                                            new LatLng(src.latitude, src.longitude),
+                                            new LatLng(dest.latitude, dest.longitude)
+                                    ).width(7).color(Color.RED)
+                            );
+//                            Log.d("EXECUTION","From: "+src.toString()+" to: "+dest.toString());
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+
+                    }
+                }
+            });
+            return dirList;
+        }
+        private List<LatLng> decodePoly(String encoded) {
+
+            List<LatLng> poly = new ArrayList<LatLng>();
+            int index = 0, len = encoded.length();
+            int lat = 0, lng = 0;
+
+            while (index < len) {
+                int b, shift = 0, result = 0;
+                do {
+                    b = encoded.charAt(index++) - 63;
+                    result |= (b & 0x1f) << shift;
+                    shift += 5;
+                } while (b >= 0x20);
+                int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+                lat += dlat;
+
+                shift = 0;
+                result = 0;
+                do {
+                    b = encoded.charAt(index++) - 63;
+                    result |= (b & 0x1f) << shift;
+                    shift += 5;
+                } while (b >= 0x20);
+                int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+                lng += dlng;
+
+                LatLng p = new LatLng((((double) lat / 1E5)),
+                        (((double) lng / 1E5)));
+                poly.add(p);
+            }
+
+            return poly;
+        }
+        @Override
+        protected void onPostExecute(final List result) {
+            super .onPostExecute(result);
+        }
+
+    }
 }
