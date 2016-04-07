@@ -10,8 +10,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Xml;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,11 +50,9 @@ import java.util.List;
 
 
 public class Landing extends AppCompatActivity {
-    Button callButton;
     Button getLocationButton;
     Button searchByLocButton;
     Button searchByTimeButton;
-    Button aboutButton;
     Button getDirectionsButton;
     EditText destinationbox;
     NumberPicker hourpick;
@@ -68,7 +69,8 @@ public class Landing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
         new setupCrimes().execute();
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         Calendar calendar = Calendar.getInstance();
         int currenthour = calendar.get(Calendar.HOUR);
         int currentmin = calendar.get(Calendar.MINUTE);
@@ -99,13 +101,6 @@ public class Landing extends AppCompatActivity {
         meridianpick.setSelection(spinnerposition);
         locationbox = (EditText) findViewById(R.id.searchbylocationbox);
         destinationbox = (EditText) findViewById(R.id.destEditText);
-        callButton = (Button) findViewById(R.id.call911);
-        callButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Util.call(getClass(),getApplicationContext());
-            }
-        });
         getLocationButton = (Button) findViewById(R.id.getlocationbutton);
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,14 +108,6 @@ public class Landing extends AppCompatActivity {
                 Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
                 searchMapIntent.putExtra("CURRENT_LOC", true);
                 startActivity(searchMapIntent);
-            }
-        });
-        aboutButton = (Button) findViewById(R.id.aboutbutton);
-        aboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent aboutIntent = new Intent(v.getContext(), About.class);
-                startActivity(aboutIntent);
             }
         });
 
@@ -168,6 +155,31 @@ public class Landing extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu911:
+
+                Util.call(getClass(),getApplicationContext());
+                return true;
+
+            case R.id.menuAbout:
+
+                Intent searchMapIntent = new Intent(getApplicationContext(), About.class);
+                startActivity(searchMapIntent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
     @Override
     public void onStart() {

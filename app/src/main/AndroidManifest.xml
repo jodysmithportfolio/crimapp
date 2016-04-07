@@ -33,7 +33,14 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".About" />
+        <activity
+            android:name=".About"
+            android:parentActivityName="com.somethingweird.crimapp.Landing">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.somethingweird.crimapp.Landing" />
+        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -48,7 +55,8 @@
 
         <activity
             android:name=".CrimeMap"
-            android:label="@string/title_activity_crime_map">
+            android:label="@string/title_activity_crime_map"
+            android:parentActivityName="com.somethingweird.crimapp.Landing">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.somethingweird.crimapp.Landing" />

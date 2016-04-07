@@ -1,6 +1,7 @@
 package com.somethingweird.crimapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -10,7 +11,11 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,7 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
+public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
     Float currentlat = null;
     Float currentlong = null;
     String searchString ="Columbus";
@@ -57,6 +62,15 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_map);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        try{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 //            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
@@ -108,7 +122,31 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu911:
+
+                Util.call(getClass(),getApplicationContext());
+                return true;
+
+            case R.id.menuAbout:
+
+                Intent searchMapIntent = new Intent(getApplicationContext(), About.class);
+                startActivity(searchMapIntent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
     @Override
     protected void onDestroy(){
         super.onDestroy();

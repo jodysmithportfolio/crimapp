@@ -13,5 +13,6 @@
     <string name="search_button_string">Search</string>
     <string name="search_directions_text">Destination (if any)</string>
     <string name="search_directions_buttons">Get Directions</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>
