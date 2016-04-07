@@ -48,6 +48,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     String searchString ="Columbus";
     String destination = "Columbus";
     boolean useUserLoc = false;
+    boolean direction = false;
     private GoogleMap mMap;
     boolean time = false;
     float searchHour;
@@ -70,14 +71,30 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                     currentlong = (float)-83.0;
                 }
                 Log.d("Current Loc",""+currentlat+" , "+currentlong);
+                int lines =0;
+                searchString = "";
+                for(lines=0;lines<searchAddress.getMaxAddressLineIndex();lines++){
+                    searchString+=searchAddress.getAddressLine(lines);
+                    searchString+=", ";
+                }
+                Log.d("ORIGIN", searchString);
             }
             if(time=extras.getBoolean("SEARCH_TIME")){
                 searchHour = extras.getFloat("SEARCH_HOUR");
                 searchMin = extras.getFloat("SEARCH_MIN");
             }
             useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
-            if(extras.getBoolean("DIRECTIONS")){
+            direction = extras.getBoolean("DIRECTIONS");
+            if(direction){
                 destination = extras.getString("DESTINATION");
+                Address dest = getAddress(destination);
+                int maxl= dest.getMaxAddressLineIndex();
+                int i;
+                destination = "";
+                for(i=0;i<maxl;i++){
+                    destination+=dest.getAddressLine(i);
+                    destination+=", ";
+                }
             }
         }
         if(searchString!=null){
@@ -90,6 +107,12 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        finish();
     }
 
 
@@ -123,11 +146,12 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
         else{
             mMap.addMarker(new MarkerOptions().position(currentLoc).title(searchString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 11));
         new addCrimes().execute();
-        Log.d("SOURCE",searchString);
-        Log.d("DEST",destination);
-        new addDirectionLayer().execute(searchString,destination);
+        if(direction) {
+            new addDirectionLayer().execute(searchString, destination);
+        }
+
     }
 
     /**
@@ -170,7 +194,7 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
             if(addList.size()>0){
                 realAdd = addList.get(0);
             }
-
+            Log.d("REAL ADDRESS", address + " converted to: " + realAdd.toString());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -276,17 +300,10 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         addHeatMap(l);
+                        l.clear();
                     }
                 });
-//                try{
-//                    URL url = new URL("http://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los%20Angeles,CA&sensor=false");
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
-//                GenericUrl url = new GenericUrl("http://maps.googleapis.com/maps/api/directions/json");
-//                url.put("origin", origin);
-//                url.put("destination", destination);
-//                url.put("sensor",false);
+
             }
 
         }
@@ -298,12 +315,6 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private class addDirectionLayer extends AsyncTask<String, String, List<LatLng>> {
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-        }
-
-
         protected List<LatLng> doInBackground(String... locs) {
             String origin = locs[0];
             String destination = locs[1];
@@ -356,25 +367,29 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
                                     new PolylineOptions().add(
                                             new LatLng(src.latitude, src.longitude),
                                             new LatLng(dest.latitude, dest.longitude)
-                                    ).width(7).color(Color.RED)
+                                    ).width(10).color(Color.RED)
                             );
 //                            Log.d("EXECUTION","From: "+src.toString()+" to: "+dest.toString());
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
-
+                        Snackbar.make(findViewById(android.R.id.content), "Unable to get directions for you query", Snackbar.LENGTH_LONG).show();
                     }
                 }
             });
-            return dirList;
+            return list;
         }
+        /* Decodes Encoded Poly lines from Google Directions API*
+         * Code From http://jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
+         */
         private List<LatLng> decodePoly(String encoded) {
-
-            List<LatLng> poly = new ArrayList<LatLng>();
+            List<LatLng> poly = new ArrayList<>();
             int index = 0, len = encoded.length();
             int lat = 0, lng = 0;
 
             while (index < len) {
+
+
                 int b, shift = 0, result = 0;
                 do {
                     b = encoded.charAt(index++) - 63;
@@ -400,10 +415,6 @@ public class CrimeMap extends FragmentActivity implements OnMapReadyCallback {
             }
 
             return poly;
-        }
-        @Override
-        protected void onPostExecute(final List result) {
-            super .onPostExecute(result);
         }
 
     }

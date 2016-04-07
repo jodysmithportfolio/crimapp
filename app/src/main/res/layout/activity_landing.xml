@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,154 +10,174 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.somethingweird.crimapp.Landing">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" >
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/search_bar1">
-
+            android:layout_height="wrap_content">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <EditText
-                    android:layout_width="175dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/searchbylocationbox"
-                    android:hint="@string/search_by_location_text"
-                    android:inputType="text"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_button_string"
-                    android:id="@+id/searchbylocbutton"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/search_bar2"
-            android:layout_below="@+id/search_bar1">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/getlocationboxstring"
-                    android:id="@+id/getlocationbutton"
-                    android:gravity="right"
-                    android:layout_gravity="right"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:id="@+id/search_bar3"
-            android:layout_below="@+id/search_bar2">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <NumberPicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/hourpicker"
-                    android:orientation="horizontal"
-                    android:layout_alignTop="@+id/minutepicker"
-                    android:layout_alignParentStart="true" />
-
-                <NumberPicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/minutepicker"
-                    android:orientation="horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/hourpicker"
-                    android:layout_marginStart="20dp" />
-
-                <Spinner
-                    android:layout_height="70dp"
-                    android:id="@+id/meridianpicker"
-                    android:spinnerMode="dropdown"
-                    android:layout_width="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignBottom="@+id/search_by_time_button"
-                    android:layout_toEndOf="@+id/minutepicker" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_button_string"
-                    android:id="@+id/search_by_time_button"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
-        </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:id="@+id/search_bar4"
-                android:layout_below="@+id/search_bar3">
-                <RelativeLayout
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <EditText
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/destEditText"
-                        android:hint="@string/search_directions_text"
-                        android:inputType="text"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginTop="31dp" />
+                    android:layout_height="50dp"
+                    android:id="@+id/search_bar1">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/search_directions_buttons"
-                        android:id="@+id/getDirButton"
-                        android:layout_alignTop="@+id/destEditText"
-                        android:layout_alignParentEnd="true" />
-                </RelativeLayout>
-            </LinearLayout>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/call911text"
-            android:id="@+id/call911"
-            android:layout_gravity="right"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <EditText
+                            android:layout_width="175dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/searchbylocationbox"
+                            android:hint="@string/search_by_location_text"
+                            android:inputType="text"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/search_button_string"
+                            android:id="@+id/searchbylocbutton"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/abouttext"
-            android:id="@+id/aboutbutton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center_horizontal" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/search_bar2"
+                    android:layout_below="@+id/search_bar1">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/getlocationboxstring"
+                            android:id="@+id/getlocationbutton"
+                            android:gravity="right"
+                            android:layout_gravity="right"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
 
-        </RelativeLayout>
-    </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:id="@+id/search_bar3"
+                    android:layout_below="@+id/search_bar2">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <NumberPicker
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/hourpicker"
+                            android:orientation="horizontal"
+                            android:layout_alignTop="@+id/minutepicker"
+                            android:layout_alignParentStart="true" />
 
+                        <NumberPicker
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/minutepicker"
+                            android:orientation="horizontal"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@+id/hourpicker"
+                            android:layout_marginStart="20dp" />
+
+                        <Spinner
+                            android:layout_height="70dp"
+                            android:id="@+id/meridianpicker"
+                            android:spinnerMode="dropdown"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignBottom="@+id/search_by_time_button"
+                            android:layout_toEndOf="@+id/minutepicker" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/search_button_string"
+                            android:id="@+id/search_by_time_button"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/search_bar4"
+                    android:layout_below="@+id/search_bar3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <EditText
+                            android:layout_width="175dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/destEditText"
+                            android:hint="@string/search_directions_text"
+                            android:inputType="text"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="31dp" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/search_directions_buttons"
+                            android:id="@+id/getDirButton"
+                            android:layout_alignTop="@+id/destEditText"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/search_bar5"
+                    android:layout_below="@+id/search_bar4">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/call911text"
+                            android:id="@+id/call911"
+                            android:layout_gravity="right"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/abouttext"
+                            android:id="@+id/aboutbutton"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center_horizontal" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
