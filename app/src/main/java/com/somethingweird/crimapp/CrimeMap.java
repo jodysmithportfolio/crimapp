@@ -2,6 +2,7 @@ package com.somethingweird.crimapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -61,6 +62,16 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences themePref;
+        themePref = getSharedPreferences(getResources().getString(R.string.theme_shared_pref),MODE_PRIVATE);
+        String theme = themePref.getString("THEME","DARK");
+        Log.d("THEME:", theme);
+        if("DARK".equals(theme)){
+            setTheme(R.style.CrimeDark);
+        }else{
+            setTheme(R.style.CrimeLight);
+        }
+
         setContentView(R.layout.activity_crime_map);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,7 +96,7 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                     currentlong = (float)-83.0;
                 }
                 Log.d("Current Loc",""+currentlat+" , "+currentlong);
-                int lines =0;
+                int lines;
                 searchString = "";
                 for(lines=0;lines<searchAddress.getMaxAddressLineIndex();lines++){
                     searchString+=searchAddress.getAddressLine(lines);
@@ -165,7 +176,16 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        SharedPreferences themePref;
+        themePref = getSharedPreferences(getResources().getString(R.string.theme_shared_pref),MODE_PRIVATE);
+        String theme = themePref.getString("THEME","DARK");
+        Log.d("THEME:", theme);
+        if("DARK".equals(theme)){
+            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        }else{
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+        }
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setMyLocationEnabled(true);
         LatLng currentLoc = new LatLng(40 ,-83);

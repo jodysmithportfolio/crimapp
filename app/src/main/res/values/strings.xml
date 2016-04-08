@@ -14,5 +14,10 @@
     <string name="search_directions_text">Destination (if any)</string>
     <string name="search_directions_buttons">Get Directions</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="theme_shared_pref">com.somethingweird.crimeapp.themepref</string>
+    <string name="div_desc">DIVIDER</string>
+    <string name="change_theme_setting_text">Change Theme</string>
+    <string name="dark_theme">Dark</string>
+    <string name="light_theme">Light</string>
 
 </resources>

@@ -16,6 +16,7 @@ import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,10 +64,20 @@ public class Landing extends AppCompatActivity {
     EditText locationbox;
 
     private final String TAG = getClass().getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences  themePref;
+        themePref = getSharedPreferences(getResources().getString(R.string.theme_shared_pref),MODE_PRIVATE);
+        String theme = themePref.getString("THEME","DARK");
+        Log.d("THEME:", theme);
+        if("DARK".equals(theme)){
+            setTheme(R.style.CrimeDark);
+        }else{
+            setTheme(R.style.CrimeLight);
+        }
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         setContentView(R.layout.activity_landing);
         new setupCrimes().execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -201,7 +212,7 @@ public class Landing extends AppCompatActivity {
 
     @Override
     public void onPause() {
-        Log.d(TAG,"onPause Called");
+        Log.d(TAG, "onPause Called");
         super.onPause();
     }
 
