@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -78,6 +79,16 @@ public class Landing extends AppCompatActivity {
         }
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        Snackbar.make(findViewById(android.R.id.content), "You can change the theme anytime!", Snackbar.LENGTH_LONG)
+                .setAction("Theme Settings", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(view.getContext(), About.class);
+                        startActivity(i);
+                    }
+                })
+                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+                .show();
         setContentView(R.layout.activity_landing);
         new setupCrimes().execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

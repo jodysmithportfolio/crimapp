@@ -8,7 +8,7 @@
     <string name="backbuttontext">Back</string>
     <string name="lengend">Legend</string>
     <string name="howtousetext">How to Use</string>
-    <string name="aboutustext">CrimApp was developed by Cyriac, Jody, and Daniel.</string>
+    <string name="aboutustext">Developed by Cyriac, Jody, and Daniel.</string>
     <string name="title_activity_crime_map">Crime Map</string>
     <string name="search_button_string">Search</string>
     <string name="search_directions_text">Destination (if any)</string>
@@ -19,5 +19,10 @@
     <string name="change_theme_setting_text">Change Theme</string>
     <string name="dark_theme">Dark</string>
     <string name="light_theme">Light</string>
+    <string name="howtousetitle">How to Use</string>
+    <string name="htu1">Type in a location you want to focus on and click the search button next to it to search around the specified location.</string>
+    <string name="htu2">Click on the search by current location to search around the phone\'s your last known location, based on your phone\'s location provider</string>
+    <string name="htu3">Select a time and click search to find crimes around the specified time, the search is automatically focused on your last known location, if known, or Columbus as a wole, if your location is unavailable.</string>
+    <string name="htu4">Type in a destination to get driving directions from the search location to the destination on the map along with the crimes and heatmap.</string>
 
 </resources>

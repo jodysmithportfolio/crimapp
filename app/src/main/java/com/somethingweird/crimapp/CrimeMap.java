@@ -425,7 +425,7 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                                     new PolylineOptions().add(
                                             new LatLng(src.latitude, src.longitude),
                                             new LatLng(dest.latitude, dest.longitude)
-                                    ).width(10).color(Color.RED)
+                                    ).width(7).color(Color.RED)
                             );
 //                            Log.d("EXECUTION","From: "+src.toString()+" to: "+dest.toString());
                         }

@@ -1,7 +1,10 @@
 package com.somethingweird.crimapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,8 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 
 public class About extends AppCompatActivity {
@@ -49,7 +54,22 @@ public class About extends AppCompatActivity {
             themeSwitch.setChecked(false);
             themeSwitch.setText(getString(R.string.light_theme));
         }
+        findViewById(R.id.how_to_use_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open(findViewById(android.R.id.content));
+            }
+        });
 
+        findViewById(R.id.about_us_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://github.com/cyriacd/Crimapp";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
         themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -81,6 +101,27 @@ public class About extends AppCompatActivity {
 
 //        SharedPreferences.Editor themeEditor = getSharedPreferences(getResources().getString(R.string.theme_shared_pref), MODE_PRIVATE).edit();
 //        themeEditor.putString("THEME","LIGHT").apply();
+    }
+
+    public void open(View view){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setView(R.layout.howtouselayout);;
+        alertDialogBuilder.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+        lp.copyFrom(alertDialog.getWindow().getAttributes());
+        lp.height = 1000;
+//        lp.x=-170;
+//        lp.y=100;
+        alertDialog.getWindow().setAttributes(lp);
     }
 
     // Menu icons are inflated just as they were with actionbar
