@@ -83,35 +83,36 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
             e.printStackTrace();
         }
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-//            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
-            searchString = extras.getString("SEARCH_DATA");
-            if (searchString != null) {
-                Address searchAddress = getAddress(searchString);
-                if(searchAddress.hasLongitude()&&searchAddress.hasLatitude()){
-                    currentlat = new Float(searchAddress.getLatitude());
-                    currentlong = new Float(searchAddress.getLongitude());
+
+        if(extras!=null){
+            if(extras.containsKey("SEARCH_ORIGIN")){
+                searchString = extras.getString("SEARCH_ORIGIN");
+                Address origin = getAddress(searchString);
+                int maxl= origin.getMaxAddressLineIndex();
+                int i;
+                Log.d("PRE ORIGIN",searchString);
+                searchString = "";
+                for(i=0;i<maxl;i++){
+                    searchString+=origin.getAddressLine(i);
+                    searchString+=", ";
+                }
+                Log.d("POST ORIGIN",searchString);
+
+                if(origin.hasLongitude()&&origin.hasLatitude()){
+                    currentlat = (float)(origin.getLatitude());
+                    currentlong = (float)(origin.getLongitude());
                 }else{
                     currentlat = (float)40.0;
                     currentlong = (float)-83.0;
                 }
-                Log.d("Current Loc",""+currentlat+" , "+currentlong);
-                int lines;
-                searchString = "";
-                for(lines=0;lines<searchAddress.getMaxAddressLineIndex();lines++){
-                    searchString+=searchAddress.getAddressLine(lines);
-                    searchString+=", ";
-                }
-                Log.d("ORIGIN", searchString);
+                useUserLoc = false;
+            }else{
+                useUserLoc = true;
             }
-            if(time=extras.getBoolean("SEARCH_TIME")){
-                searchHour = extras.getFloat("SEARCH_HOUR");
-                searchMin = extras.getFloat("SEARCH_MIN");
-            }
-            useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
-            direction = extras.getBoolean("DIRECTIONS");
-            if(direction){
-                destination = extras.getString("DESTINATION");
+            if(extras.containsKey("SEARCH_DEST")){
+                direction = true;
+                destination = extras.getString("SEARCH_DEST");
+                Log.d("PRE DEST",destination);
                 Address dest = getAddress(destination);
                 int maxl= dest.getMaxAddressLineIndex();
                 int i;
@@ -120,13 +121,66 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                     destination+=dest.getAddressLine(i);
                     destination+=", ";
                 }
+                Log.d("POST DEST",destination);
+                Log.d("DESTINATION ","SET TO TRUE "+destination);
+            }else{
+                Log.d("DESTINATION ","SET TO FALSE");
+                direction = false;
+            }
+            if(extras.containsKey("SEARCH_HOUR")&&extras.containsKey("SEARCH_MIN")){
+                searchHour = extras.getFloat("SEARCH_HOUR");
+                searchMin = extras.getFloat("SEARCH_MIN");
+                time = true;
             }
         }
-        if(searchString!=null){
-            Toast.makeText(getApplicationContext(), "search around: " + searchString, Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(getApplicationContext(), "searching current location", Toast.LENGTH_LONG).show();
-        }
+
+
+
+
+//        if (extras != null) {
+////            Log.d("EXTRAS:  ", extras.getString("SEARCH_DATA"));
+//            searchString = extras.getString("SEARCH_DATA");
+//            if (searchString != null) {
+//                Address searchAddress = getAddress(searchString);
+//                if(searchAddress.hasLongitude()&&searchAddress.hasLatitude()){
+//                    currentlat = new Float(searchAddress.getLatitude());
+//                    currentlong = new Float(searchAddress.getLongitude());
+//                }else{
+//                    currentlat = (float)40.0;
+//                    currentlong = (float)-83.0;
+//                }
+//                Log.d("Current Loc",""+currentlat+" , "+currentlong);
+//                int lines;
+//                searchString = "";
+//                for(lines=0;lines<searchAddress.getMaxAddressLineIndex();lines++){
+//                    searchString+=searchAddress.getAddressLine(lines);
+//                    searchString+=", ";
+//                }
+//                Log.d("ORIGIN", searchString);
+//            }
+//            if(time=extras.getBoolean("SEARCH_TIME")){
+//                searchHour = extras.getFloat("SEARCH_HOUR");
+//                searchMin = extras.getFloat("SEARCH_MIN");
+//            }
+//            useUserLoc = getIntent().getBooleanExtra("CURRENT_LOC",false);
+//            direction = extras.getBoolean("DIRECTIONS");
+//            if(direction){
+//                destination = extras.getString("DESTINATION");
+//                Address dest = getAddress(destination);
+//                int maxl= dest.getMaxAddressLineIndex();
+//                int i;
+//                destination = "";
+//                for(i=0;i<maxl;i++){
+//                    destination+=dest.getAddressLine(i);
+//                    destination+=", ";
+//                }
+//            }
+//        }
+//        if(searchString!=null){
+//            Toast.makeText(getApplicationContext(), "search around: " + searchString, Toast.LENGTH_LONG).show();
+//        }else{
+//            Toast.makeText(getApplicationContext(), "searching current location", Toast.LENGTH_LONG).show();
+//        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -207,6 +261,7 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc, 11));
         new addCrimes().execute();
         if(direction) {
+            Log.d("GETTING DIRECTION:","FROM: "+searchString+" TO: "+destination);
             new addDirectionLayer().execute(searchString, destination);
         }
 
@@ -427,7 +482,7 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                                             new LatLng(dest.latitude, dest.longitude)
                                     ).width(7).color(Color.RED)
                             );
-//                            Log.d("EXECUTION","From: "+src.toString()+" to: "+dest.toString());
+                            Log.d("EXECUTION","From: "+src.toString()+" to: "+dest.toString());
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

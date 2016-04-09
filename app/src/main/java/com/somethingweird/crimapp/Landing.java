@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -49,20 +51,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 
 public class Landing extends AppCompatActivity {
-    Button getLocationButton;
-    Button searchByLocButton;
-    Button searchByTimeButton;
-    Button getDirectionsButton;
-    EditText destinationbox;
-    NumberPicker hourpick;
-    NumberPicker minpick;
-    Spinner meridianpick;
-    String[] meridians;
+//    Button getLocationButton;
+//    Button searchByLocButton;
+//    Button searchByTimeButton;
+//    Button getDirectionsButton;
+//    EditText destinationbox;
+//    NumberPicker hourpick;
+//    NumberPicker minpick;
+//    Spinner meridianpick;
+//    String[] meridians;
     Location currentlocation;
-    EditText locationbox;
+//    EditText locationbox;
 
     private final String TAG = getClass().getSimpleName();
     @Override
@@ -86,9 +89,7 @@ public class Landing extends AppCompatActivity {
                         Intent i = new Intent(view.getContext(), About.class);
                         startActivity(i);
                     }
-                })
-                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
-                .show();
+                }).show();
         setContentView(R.layout.activity_landing1);
         new setupCrimes().execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -98,83 +99,143 @@ public class Landing extends AppCompatActivity {
         int currentmin = calendar.get(Calendar.MINUTE);
         int currentmer = calendar.get(Calendar.AM_PM);
         String currentmers = "PM";
-        hourpick = (NumberPicker) findViewById(R.id.hourpicker);
+        final NumberPicker hourpick = (NumberPicker) findViewById(R.id.hourpicker);
         hourpick.setMaxValue(12);
         hourpick.setMinValue(1);
         hourpick.setValue(currenthour);//change to current hour
-        minpick = (NumberPicker) findViewById(R.id.minutepicker);
+        final NumberPicker minpick = (NumberPicker) findViewById(R.id.minutepicker);
         minpick.setMaxValue(59);
         minpick.setMinValue(0);
         minpick.setFormatter(new NumberPicker.Formatter() {
             @Override
             public String format(int i) {
-                return String.format("%02d", i);
+                return String.format(Locale.US,"%02d", i);
             }
         });
         minpick.setValue(currentmin);//change to current min
-        meridianpick = (Spinner) findViewById(R.id.meridianpicker);
+        final Spinner meridianpick = (Spinner) findViewById(R.id.meridianpicker);
         if (currentmer == Calendar.AM) {
             currentmers = "AM";
         }
-        this.meridians = new String[]{"AM", "PM"};
+        final String[] meridians = new String[]{"AM", "PM"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, meridians);
+        //noinspection ConstantConditions
         meridianpick.setAdapter(adapter);
         int spinnerposition = adapter.getPosition(currentmers);
         meridianpick.setSelection(spinnerposition);
-        locationbox = (EditText) findViewById(R.id.searchbylocationbox);
-        destinationbox = (EditText) findViewById(R.id.destEditText);
-        getLocationButton = (Button) findViewById(R.id.getlocationbutton);
-        getLocationButton.setOnClickListener(new View.OnClickListener() {
+        final EditText locationbox = (EditText) findViewById(R.id.searchbylocationbox);
+        final EditText destinationbox = (EditText) findViewById(R.id.destEditText);
+        final CheckBox allCrimes = (CheckBox) findViewById(R.id.all_crimes);
+        //noinspection ConstantConditions
+        allCrimes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
-                searchMapIntent.putExtra("CURRENT_LOC", true);
-                startActivity(searchMapIntent);
+            public void onClick(View view) {
+                //noinspection ConstantConditions
+                if(allCrimes.isChecked()){
+                    hourpick.setEnabled(false);
+                    minpick.setEnabled(false);
+                    meridianpick.setEnabled(false);
+                }else{
+                    hourpick.setEnabled(true);
+                    minpick.setEnabled(true);
+                    meridianpick.setEnabled(true);
+                }
             }
         });
 
-        searchByLocButton = (Button) findViewById(R.id.searchbylocbutton);
-        searchByLocButton.setOnClickListener(new View.OnClickListener() {
+        //noinspection ConstantConditions
+        findViewById(R.id.search_button).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
-                searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
-                startActivity(searchMapIntent);
-            }
-        });
-        getDirectionsButton = (Button) findViewById(R.id.getDirButton);
-        getDirectionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
-                searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
-                searchMapIntent.putExtra("DIRECTIONS",true);
-                searchMapIntent.putExtra("DESTINATION",destinationbox.getText().toString());
-                startActivity(searchMapIntent);
-            }
-        });
-        searchByTimeButton = (Button) findViewById(R.id.search_by_time_button);
-        searchByTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
-                float hour = hourpick.getValue();
-                float min = hourpick.getValue();
-                Calendar searchTime = new GregorianCalendar();
-                searchTime.set(Calendar.HOUR, (int) hour);
-                searchTime.set(Calendar.MINUTE, (int) min);
-//                searchTime.setTime();
-                if(meridianpick.getSelectedItem()=="PM"){
-                    searchTime.set(Calendar.AM_PM,Calendar.PM);
-                }else{
-                    searchTime.set(Calendar.AM_PM,Calendar.AM);
+            public void onClick(View view){
+                Intent i = new Intent(view.getContext(),CrimeMap.class);
+                try {
+                    String origin = locationbox.getText().toString();
+
+                    String dest = destinationbox.getText().toString();
+                    if (!"".equals(origin)) {
+                        i.putExtra("SEARCH_ORIGIN", origin);
+                    }
+                    if (!"".equals(dest)) {
+                        i.putExtra("SEARCH_DEST", dest);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                searchMapIntent.putExtra("SEARCH_TIME", true);
-                searchMapIntent.putExtra("SEARCH_HOUR", (float)searchTime.get(Calendar.HOUR_OF_DAY));
-                searchMapIntent.putExtra("SEARCH_MIN", (float)searchTime.get(Calendar.MINUTE));
-                startActivity(searchMapIntent);
+                if(!allCrimes.isChecked()){
+
+                    float hour = hourpick.getValue();
+                    float min = minpick.getValue();
+                    Calendar searchTime = new GregorianCalendar();
+                    searchTime.set(Calendar.HOUR, (int) hour);
+                    searchTime.set(Calendar.MINUTE, (int) min);
+                    if(meridianpick.getSelectedItem()=="PM"){
+                        searchTime.set(Calendar.AM_PM,Calendar.PM);
+                    }else{
+                        searchTime.set(Calendar.AM_PM,Calendar.AM);
+                    }
+                    i.putExtra("SEARCH_HOUR", (float)searchTime.get(Calendar.HOUR_OF_DAY));
+                    i.putExtra("SEARCH_MIN", (float)searchTime.get(Calendar.MINUTE));
+                    Log.d("TIME SENT:", ""+searchTime.get(Calendar.HOUR_OF_DAY)+":"+searchTime.get(Calendar.MINUTE));
+                }
+                startActivity(i);
+
             }
         });
+
+
+//        getLocationButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+//                searchMapIntent.putExtra("CURRENT_LOC", true);
+//                startActivity(searchMapIntent);
+//            }
+//        });
+//
+//        final Button searchByLocButton = (Button) findViewById(R.id.searchbylocbutton);
+//        searchByLocButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+//                searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
+//                startActivity(searchMapIntent);
+//            }
+//        });
+//        final Button getDirectionsButton = (Button) findViewById(R.id.getDirButton);
+//        getDirectionsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+//                searchMapIntent.putExtra("SEARCH_DATA", locationbox.getText().toString());
+//                searchMapIntent.putExtra("DIRECTIONS",true);
+//                searchMapIntent.putExtra("DESTINATION",destinationbox.getText().toString());
+//                startActivity(searchMapIntent);
+//            }
+//        });
+//        final Button searchByTimeButton = (Button) findViewById(R.id.search_by_time_button);
+//        searchByTimeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent searchMapIntent = new Intent(v.getContext(), CrimeMap.class);
+//                float hour = hourpick.getValue();
+//                float min = hourpick.getValue();
+//                Calendar searchTime = new GregorianCalendar();
+//                searchTime.set(Calendar.HOUR, (int) hour);
+//                searchTime.set(Calendar.MINUTE, (int) min);
+////                searchTime.setTime();
+//                if(meridianpick.getSelectedItem()=="PM"){
+//                    searchTime.set(Calendar.AM_PM,Calendar.PM);
+//                }else{
+//                    searchTime.set(Calendar.AM_PM,Calendar.AM);
+//                }
+//                searchMapIntent.putExtra("SEARCH_TIME", true);
+//                searchMapIntent.putExtra("SEARCH_HOUR", (float)searchTime.get(Calendar.HOUR_OF_DAY));
+//                searchMapIntent.putExtra("SEARCH_MIN", (float)searchTime.get(Calendar.MINUTE));
+//                startActivity(searchMapIntent);
+//            }
+//        });
+
+
     }
 
     @Override
