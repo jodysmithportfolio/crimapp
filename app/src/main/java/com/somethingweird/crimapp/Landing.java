@@ -89,7 +89,7 @@ public class Landing extends AppCompatActivity {
                 })
                 .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
                 .show();
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.activity_landing1);
         new setupCrimes().execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

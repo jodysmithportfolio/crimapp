@@ -24,5 +24,6 @@
     <string name="htu2">Click on the search by current location to search around the phone\'s your last known location, based on your phone\'s location provider</string>
     <string name="htu3">Select a time and click search to find crimes around the specified time, the search is automatically focused on your last known location, if known, or Columbus as a wole, if your location is unavailable.</string>
     <string name="htu4">Type in a destination to get driving directions from the search location to the destination on the map along with the crimes and heatmap.</string>
+    <string name="select_time">Select Time:</string>
 
 </resources>
