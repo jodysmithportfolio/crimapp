@@ -31,6 +31,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
+import com.google.maps.android.heatmaps.WeightedLatLng;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -270,18 +271,19 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
     /**
      * Method to add the heat map layer to the map.
      *
-     * REQUIRES: @code(List<LatLng> list) a collectio3956n of LatLng objects representing the crimes
-     * in the database.
+     * REQUIRES: @code(List<WeightedLatLng> list) a collection of LatLng objects representing the
+     * crimes in the database.
      *
      * RETURNS: void.
      */
-    private void addHeatMap(List<LatLng> list) {
+    private void addHeatMap(List<WeightedLatLng> list) {
         // Create a heat map tile provider, passing it the listlngs of the crime locations.
         HeatmapTileProvider mProvider = new HeatmapTileProvider.Builder()
-                .data(list)
+                .weightedData(list)
                 .radius(50)
                 .opacity(0.4)
                 .build();
+
         // Add a tile overlay to the map, using the heat map tile provider.
         TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
     }
@@ -341,8 +343,10 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
             List<Crime> Crimes = Crime.getCrimes(); //static crime list from Crimes.java
             Address address;
             //Test list for addHeatMap
-            List<LatLng> list = new ArrayList<>();
+            List<WeightedLatLng> list = new ArrayList<>();
             LatLng testLoc;
+            WeightedLatLng wTestLoc;
+            double intensity = 1;
             for(Crime c : Crimes){
                 if(time){
                     Log.d("LOCATION",c.getLocation());
@@ -375,8 +379,41 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                                             .position(new LatLng(add.getLatitude(), add.getLongitude())));
                                 }
                             });
+
                             testLoc = new LatLng(address.getLatitude(), address.getLongitude());
-                            list.add(testLoc);
+                            //Switch case to assign data point weight
+                            switch (cr.getType()) {
+                                case "Burglary":
+                                    intensity = 1.5;
+                                    break;
+                                case "Theft":
+                                    intensity = 2;
+                                    break;
+                                case "Robbery":
+                                    intensity = 3;
+                                    break;
+                                case "Motor Vehicle Theft":
+                                    intensity = 3;
+                                    break;
+                                case "Arson":
+                                    intensity = 4;
+                                    break;
+                                case "Assault":
+                                    intensity = 4;
+                                    break;
+                                case "Sexual Assault":
+                                    intensity = 5;
+                                    break;
+                                case "Homicide":
+                                    intensity = 10;
+                                    break;
+                                default:
+                                    intensity = 1;
+                                    break;
+                            }
+                            wTestLoc = new WeightedLatLng(testLoc, intensity);
+                            list.add(wTestLoc);
+
                         } else {
                             Log.d("FAIL", "NO LAT/LONG for " + c.getLocation());
                         }
@@ -397,8 +434,41 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                                         .position(new LatLng(add.getLatitude(), add.getLongitude())));
                             }
                         });
+
                         testLoc = new LatLng(address.getLatitude(), address.getLongitude());
-                        list.add(testLoc);
+                        //Switch case to assign data point weight
+                        switch (cr.getType()) {
+                            case "Burglary":
+                                intensity = 1.5;
+                                break;
+                            case "Theft":
+                                intensity = 2;
+                                break;
+                            case "Robbery":
+                                intensity = 3;
+                                break;
+                            case "Motor Vehicle Theft":
+                                intensity = 3;
+                                break;
+                            case "Arson":
+                                intensity = 4;
+                                break;
+                            case "Assault":
+                                intensity = 4;
+                                break;
+                            case "Sexual Assault":
+                                intensity = 5;
+                                break;
+                            case "Homicide":
+                                intensity = 10;
+                                break;
+                            default:
+                                intensity = 1;
+                                break;
+                        }
+                        wTestLoc = new WeightedLatLng(testLoc, intensity);
+                        list.add(wTestLoc);
+
                     } else {
                         Log.d("FAIL", "NO LAT/LONG for " + c.getLocation());
                     }
@@ -409,7 +479,7 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                 Snackbar.make(findViewById(android.R.id.content), "No crimes that matches your criteria", Snackbar.LENGTH_LONG)
                         .show();
             }else{
-                final List<LatLng> l = list;
+                final List<WeightedLatLng> l = list;
                 runOnUiThread(new Runnable() {
                     public void run() {
                         addHeatMap(l);
