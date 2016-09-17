@@ -383,6 +383,9 @@ public class Landing extends AppCompatActivity {
                             case "crime":
                                 parser.next();
                                 break;
+                            case "db":
+                                parser.next();
+                                break;
                         }
 
 

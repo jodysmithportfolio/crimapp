@@ -32,6 +32,7 @@
         <link>
             http://www.columbuspolice.org/Reports/PublicReport?caseID=4166264</link>
     </crime>
+    
     <crime>
         <type>Criminal Damaging</type>
         <location>720 W 3rd Ave</location>
@@ -53,6 +54,1181 @@
         <occurred>3/23/2016 1:45:00 AM</occurred>
         <between>3/23/2016 2:14:30 AM</between>
         <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4166432</link>
-
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>3172 Balsam Lk Dr</location>
+        <occurred>3/12/2016 11:45:00 PM</occurred>
+        <between>3/13/2016 4:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165423</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>7222 Harlow Dr</location>
+        <occurred>3/12/2016 4:00:00 PM</occurred>
+        <between>3/13/2016 1:40:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165424</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>5455 Norton Rd</location>
+        <occurred>3/12/2016 10:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165425</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>5561 Sullivant Ave</location>
+        <occurred>3/12/2016 7:00:19 PM</occurred>
+        <between>3/13/2016 9:00:22 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165426</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 1</type>
+        <location>6145 Parkcenter Cir</location>
+        <occurred>3/13/2016 11:13:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165427</link>
+    </crime>
+    <crime>
+        <type>Theft of License Plate</type>
+        <location>3583 Refugee Rd</location>
+        <occurred>3/11/2016 11:00:00 AM</occurred>
+        <between>3/12/2016 5:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165428</link>
+    </crime>
+    <crime>
+        <type>Telecommunication Harassment</type>
+        <location>6520 Dobson Sq E</location>
+        <occurred>3/13/2016 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165429</link>
+    </crime>
+    <crime>
+        <type>Theft - Prescription Drugs</type>
+        <location>5375 Blackmer Ridge Blvd</location>
+        <occurred>3/9/2016 11:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165430</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>127 E 13th Ave</location>
+        <occurred>3/13/2016 7:00:00 AM</occurred>
+        <between>3/13/2016 12:43:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165431</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 3</type>
+        <location>1948 Bay Prt Dr</location>
+        <occurred>3/13/2016 12:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165432</link>
+    </crime>
+    <crime>
+        <type> Molesting Vic 15 Yr and Younger</type>
+        <location>2066 Tanglewood Ct</location>
+        <occurred>3/13/2016 5:40:53 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165433</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>1574 E Livingston Ave</location>
+        <occurred>2/13/2016 2:00:00 AM</occurred>
+        <between>2/13/2016 8:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165434</link>
+    </crime>
+    <crime>
+        <type>Trespassing</type>
+        <location>6480 Winchester Pike</location>
+        <occurred>3/13/2016 11:42:00 AM</occurred>
+        <between>3/13/2016 11:55:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165435</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>53 Eastpointe Rdg Dr</location>
+        <occurred>3/12/2016 12:00:00 AM</occurred>
+        <between>3/13/2016 12:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165436</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 1</type>
+        <location>2738 Stonehenge Dr Apt E</location>
+        <occurred>3/12/2016 9:45:00 PM</occurred>
+        <between>3/13/2016 1:57:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165437</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 2</type>
+        <location>1756 Newfield Rd</location>
+        <occurred>3/8/2016 12:00:00 AM</occurred>
+        <between>3/13/2016 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165438</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>3033 Howey Rd</location>
+        <occurred>2/21/2016 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165439</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>3089 E Main St</location>
+        <occurred>3/13/2016 2:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165440</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>5511 Thumbleweed Dr</location>
+        <occurred>3/13/2016 12:00:00 PM</occurred>
+        <between>3/13/2016 1:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165441</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>3692 Briggs Rd Apt 11</location>
+        <occurred>3/13/2016 3:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165442</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>4600 Northtowne Blvd</location>
+        <occurred>3/13/2016 2:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165443</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 5</type>
+        <location>33 W Broad St</location>
+        <occurred>3/13/2016 2:00:00 PM</occurred>
+        <between>3/13/2016 3:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165444</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 3</type>
+        <location>749 S Hague Ave</location>
+        <occurred>3/9/2016 4:30:00 PM</occurred>
+        <between>3/11/2016 2:15:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165445</link>
+    </crime>
+    <crime>
+        <type> Burglary - Zone 3 - ATTEMPT</type>
+        <location>699 Georgian Dr</location>
+        <occurred>3/13/2016 1:30:00 PM</occurred>
+        <between>3/13/2016 4:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165446</link>
+    </crime>
+    <crime>
+        <type>Robbery</type>
+        <location>2529 Franksway St</location>
+        <occurred>3/13/2016 4:31:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165447</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 5</type>
+        <location>633 E Starr</location>
+        <occurred>3/9/2016 1:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165448</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>191 S Yale Ave</location>
+        <occurred>3/13/2016 5:15:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165449</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>1805 Morse Rd</location>
+        <occurred>3/13/2016 5:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165450</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 3</type>
+        <location>710 S Burgess Ave</location>
+        <occurred>3/13/2016 12:00:00 PM</occurred>
+        <between>3/13/2016 5:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165451</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>5760 Maple Canyon Ave</location>
+        <occurred>3/13/2016 5:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165452</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>7405 Cimmaron St</location>
+        <occurred>3/13/2016 5:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165453</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 3</type>
+        <location>2033 W Broad St Apt B</location>
+        <occurred>3/12/2016 12:30:00 PM</occurred>
+        <between>3/12/2016 5:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165454</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>Cooke Rd + Indianola Ave</location>
+        <occurred>3/13/2016 6:02:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165455</link>
+    </crime>
+    <crime>
+        <type>Telecommunication Harassment</type>
+        <location>3561 Lockbourne Rd</location>
+        <occurred>3/13/2016 8:00:00 AM</occurred>
+        <between>3/13/2016 6:07:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165456</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>850 S Waverly St</location>
+        <occurred>3/13/2016 5:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165457</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>6894 Garden Terrace Rd</location>
+        <occurred>3/13/2016 6:15:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165458</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>3616 Amber Clb</location>
+        <occurred>3/12/2016 4:30:00 PM</occurred>
+        <between>3/13/2016 6:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165459</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>Lockbourne Rd + Keobel Rd</location>
+        <occurred>3/13/2016 7:23:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165460</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>160 Easton Town Ctr</location>
+        <occurred>3/13/2016 3:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165461</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>1118 18th Ave</location>
+        <occurred>3/6/2016 10:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165462</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>237 E 18th Ave</location>
+        <occurred>3/13/2016 8:40:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165463</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>1912 Forest Wind Dr</location>
+        <occurred>3/13/2016 9:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165464</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>6079 Parkcenter Cir</location>
+        <occurred>3/9/2016 6:00:00 PM</occurred>
+        <between>3/9/2016 10:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165465</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>5141 Tuttle Crossing Blvd</location>
+        <occurred>3/9/2016 7:00:00 PM</occurred>
+        <between>3/9/2016 9:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165466</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>1313 Hilliard Rome Rd</location>
+        <occurred>3/9/2016 7:40:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165467</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>1708 Hilliard Rome Rd</location>
+        <occurred>3/9/2016 8:20:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165468</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>3666 W Dublin Granville Rd</location>
+        <occurred>3/7/2016 5:37:00 PM</occurred>
+        <between>3/7/2016 5:40:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165469</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>1897 Tamarack Cir S</location>
+        <occurred>3/9/2016 11:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165470</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>862 Byron Ave</location>
+        <occurred>3/3/2016 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165471</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>220 E Lane Ave</location>
+        <occurred>3/9/2016 2:15:00 AM</occurred>
+        <between>3/9/2016 3:15:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165472</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>1185 Fountain Ln</location>
+        <occurred>3/9/2016 12:00:00 AM</occurred>
+        <between>3/9/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165473</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>3137 N High St</location>
+        <occurred>3/9/2016 7:00:00 PM</occurred>
+        <between>3/9/2016 9:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165474</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>26 E 5th Ave</location>
+        <occurred>3/9/2016 7:30:00 PM</occurred>
+        <between>3/9/2016 11:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165475</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>5967 Millbridge Dr</location>
+        <occurred>3/9/2016 3:00:00 AM</occurred>
+        <between>3/9/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165476</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>69 E 14th Ave</location>
+        <occurred>3/10/2016 12:00:00 AM</occurred>
+        <between>3/10/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165477</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>6914 Idlelea Dr</location>
+        <occurred>3/9/2016 2:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165478</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>E 11th Ave + N 4th St</location>
+        <occurred>3/10/2016 12:00:00 AM</occurred>
+        <between>3/10/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165479</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>1279 Clove Ct</location>
+        <occurred>3/10/2016 12:00:00 AM</occurred>
+        <between>3/10/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165480</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>6170 Parkcenter Cir</location>
+        <occurred>3/9/2016 12:00:00 AM</occurred>
+        <between>3/9/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165481</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Petit</type>
+        <location>1485 E Livingston Ave</location>
+        <occurred>3/10/2016 12:00:00 PM</occurred>
+        <between>3/10/2016 3:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165482</link>
+    </crime>
+    <crime>
+        <type> Motor Vehicle Theft - ATTEMPT</type>
+        <location>1535 Runaway Bay Dr</location>
+        <occurred>3/10/2016 10:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165483</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>380 Effington Ln</location>
+        <occurred>3/11/2016 11:15:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165484</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>2200 Homestead Dr</location>
+        <occurred>3/11/2016 2:29:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165485</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>2855 E Main St Cbus</location>
+        <occurred>2/4/2016 12:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165486</link>
+    </crime>
+    <crime>
+        <type>Trespassing</type>
+        <location>3304 E Broad St</location>
+        <occurred>3/11/2016 5:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165487</link>
+    </crime>
+    <crime>
+        <type>Robbery</type>
+        <location>Key Pl / Evergreen Dr</location>
+        <occurred>3/11/2016 2:40:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165488</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 2</type>
+        <location>2855 E Main St Cbus</location>
+        <occurred>2/4/2016 12:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165489</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>587 Harley Dr</location>
+        <occurred>3/11/2016 11:40:00 AM</occurred>
+        <between>3/11/2016 6:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165490</link>
+    </crime>
+    <crime>
+        <type>Embezzlement</type>
+        <location>2556 N High St</location>
+        <occurred>3/11/2016 2:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165491</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>5127 Havenside Dr</location>
+        <occurred>3/11/2016 9:10:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165492</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>1344 Lockberry Ave</location>
+        <occurred>3/11/2016 10:50:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165493</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>3829 Three Rivers Dr</location>
+        <occurred>3/11/2016 11:01:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165494</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>3829 Three Rivers Dr</location>
+        <occurred>3/11/2016 11:04:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165495</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>524 E Broad St Apt 301</location>
+        <occurred>3/12/2016 4:01:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165496</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>2504 Nissi Dr</location>
+        <occurred>3/12/2016 7:45:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165497</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>3581 Providence Glen Dr</location>
+        <occurred>3/11/2016 5:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165498</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>676 Stinchcomb Dr</location>
+        <occurred>3/12/2016 11:30:00 AM</occurred>
+        <between>3/12/2016 7:45:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165499</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>4967 Fuller Dr</location>
+        <occurred>3/12/2016 8:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165500</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>1979 Joyce Ave</location>
+        <occurred>3/11/2016 6:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165501</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>3342 Mcguffey Rd</location>
+        <occurred>3/13/2016 8:39:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165502</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>2758 Stonehenge Dr</location>
+        <occurred>3/12/2016 8:44:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165503</link>
+    </crime>
+    <crime>
+        <type>Robbery</type>
+        <location>1444 Kent St</location>
+        <occurred>3/12/2016 9:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165504</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>6845 Caine Rd</location>
+        <occurred>3/12/2016 10:00:00 PM</occurred>
+        <between>3/12/2016 11:50:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165505</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>1715 Shanley Dr</location>
+        <occurred>3/12/2016 11:30:21 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165506</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>1913 Lockbourne Rd</location>
+        <occurred>3/13/2016 12:06:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165507</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>5471 Norton Rd</location>
+        <occurred>3/12/2016 11:30:59 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165508</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>3900 Morse Rd</location>
+        <occurred>3/13/2016 1:15:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165509</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>1900 Sunny Ct</location>
+        <occurred>3/13/2016 3:49:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165510</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 1</type>
+        <location>1973 Hard Rd</location>
+        <occurred>3/13/2016 3:45:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165511</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>1379 Aven Dr</location>
+        <occurred>3/13/2016 3:59:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165512</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>2521 Azelda St</location>
+        <occurred>3/13/2016 6:40:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165513</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>873 N Mdws Ct</location>
+        <occurred>3/13/2016 8:55:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165514</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>6000 Sinclair Rd</location>
+        <occurred>3/13/2016 11:00:00 AM</occurred>
+        <between>3/13/2016 11:30:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165515</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 2</type>
+        <location>1091 Striebel Rd</location>
+        <occurred>3/12/2016 11:19:54 AM</occurred>
+        <between>3/13/2016 11:20:22 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165516</link>
+    </crime>
+    <crime>
+        <type>Theft of License Plate</type>
+        <location>1274 Midway Ave</location>
+        <occurred>3/13/2016 10:00:00 AM</occurred>
+        <between>3/13/2016 1:27:10 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165517</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>2232 N High St</location>
+        <occurred>3/13/2016 4:25:54 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165518</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>1596 S 4th St</location>
+        <occurred>3/13/2016 7:20:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165519</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>2608 Refugee Rd Apt C</location>
+        <occurred>3/13/2016 7:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165520</link>
+    </crime>
+    <crime>
+        <type> Burglary - Zone 1 -  ATTEMPT</type>
+        <location>5800 Stormcroft Ave</location>
+        <occurred>3/13/2016 9:40:00 PM</occurred>
+        <between>3/13/2016 9:59:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165521</link>
+    </crime>
+    <crime>
+        <type>Discharged Firearms - Occupied Structure</type>
+        <location>1890 N 4th St</location>
+        <occurred>3/13/2016 8:30:00 PM</occurred>
+        <between>3/11/2016 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165522</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>1326 E 26th Ave</location>
+        <occurred>3/13/2016 10:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165523</link>
+    </crime>
+    <crime>
+        <type>Trespassing</type>
+        <location>5735 Maple Cyn Ave</location>
+        <occurred>3/13/2016 10:58:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165524</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>2405 Joyce Ave</location>
+        <occurred>3/13/2016 11:00:00 AM</occurred>
+        <between>3/13/2016 11:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165525</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>2169 Dawnlight Ave</location>
+        <occurred>3/14/2016 12:44:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165526</link>
+    </crime>
+    <crime>
+        <type>Breaking and Entering Zone 2</type>
+        <location>1536 Parsons Ave</location>
+        <occurred>3/14/2016 1:07:59 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165527</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>2700 Bethel Rd</location>
+        <occurred>3/14/2016 1:50:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165528</link>
+    </crime>
+    <crime>
+        <type>Robbery</type>
+        <location>E 11th Ave + N Grant Ave</location>
+        <occurred>3/14/2016 1:15:00 AM</occurred>
+        <between>3/14/2016 1:30:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165529</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>381 Old Vlg Rd</location>
+        <occurred>3/14/2016 12:26:00 AM</occurred>
+        <between>3/14/2016 1:26:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165530</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 1</type>
+        <location>2405 Belcher Dr</location>
+        <occurred>3/13/2016 9:20:00 PM</occurred>
+        <between>3/13/2016 9:34:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165531</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>107 E 14th Ave</location>
+        <occurred>3/13/2016 8:45:00 PM</occurred>
+        <between>3/14/2016 1:30:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165532</link>
+    </crime>
+    <crime>
+        <type>Breaking and Entering Zone 5</type>
+        <location>945 Parsons Ave</location>
+        <occurred>3/14/2016 3:38:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165533</link>
+    </crime>
+    <crime>
+        <type> Burglary - Zone 4 - ATTEMPT</type>
+        <location>1178 N High St</location>
+        <occurred>3/14/2016 3:50:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165534</link>
+    </crime>
+    <crime>
+        <type> Burglary - Zone 2 - ATTEMPT</type>
+        <location>2569 S Hamilton Rd</location>
+        <occurred>3/14/2016 4:27:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165535</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>2272 Holt Ave</location>
+        <occurred>3/14/2016 4:32:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165536</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 2</type>
+        <location>6940 Madaket Cir</location>
+        <occurred>3/10/2016 12:00:00 AM</occurred>
+        <between>1/14/2016 8:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165537</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 1</type>
+        <location>5695 Great Hall Ct</location>
+        <occurred>3/13/2016 11:30:00 PM</occurred>
+        <between>3/14/2016 6:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165538</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>677 E 11th Ave</location>
+        <occurred>3/9/2016 8:15:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165539</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>Perry St</location>
+        <occurred>2/25/2016 8:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165540</link>
+    </crime>
+    <crime>
+        <type>Theft of License Plate</type>
+        <location>889 Camden Ave</location>
+        <occurred>3/13/2016 9:00:00 PM</occurred>
+        <between>3/14/2016 9:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165541</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>E 5th Ave + N High St</location>
+        <occurred>3/11/2016 9:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165542</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>5944 Scarborough Blvd</location>
+        <occurred>3/13/2016 9:22:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165543</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>5500 Millersfield Dr</location>
+        <occurred>3/14/2016 9:15:00 AM</occurred>
+        <between>3/14/2016 9:36:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165544</link>
+    </crime>
+    <crime>
+        <type>Breaking and Entering Zone 5</type>
+        <location>53 N 21 St Ave</location>
+        <occurred>3/11/2016 2:00:00 PM</occurred>
+        <between>3/14/2016 9:30:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165545</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 4</type>
+        <location>207 Garden Rd</location>
+        <occurred>3/14/2016 10:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165546</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>1841 Bairsford Dr</location>
+        <occurred>3/14/2016 10:05:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165547</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 2</type>
+        <location>2804 S Hamilton Rd</location>
+        <occurred>3/13/2016 10:50:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165548</link>
+    </crime>
+    <crime>
+        <type>Theft of License Plate</type>
+        <location>2169 Hanna Dr</location>
+        <occurred>11/15/2015 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165549</link>
+    </crime>
+    <crime>
+        <type>Miscellaneous Offense</type>
+        <location>199 E Campus View Blvd</location>
+        <occurred>3/7/2016 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165550</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 1</type>
+        <location>5711 Barry Trce</location>
+        <occurred>3/11/2016 6:30:00 PM</occurred>
+        <between>3/12/2016 3:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165551</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>1325 Catalina Ct</location>
+        <occurred>3/8/2016 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165552</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>2643 Northland Plz Dr</location>
+        <occurred>3/14/2016 2:54:25 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165553</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>1562 Tracy Cir Apt A1</location>
+        <occurred>3/9/2016 2:15:00 PM</occurred>
+        <between>3/10/2016 1:30:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165554</link>
+    </crime>
+    <crime>
+        <type>Menacing</type>
+        <location>Dartmoor Rd And Whitethorne Ave</location>
+        <occurred>3/14/2016 3:25:54 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165555</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>3766 Briggs Rd</location>
+        <occurred>3/13/2016 9:00:00 PM</occurred>
+        <between>3/14/2016 9:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165556</link>
+    </crime>
+    <crime>
+        <type>Criminal Damaging</type>
+        <location>1467 E Mound St Apt 8</location>
+        <occurred>3/14/2016 3:27:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165557</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 2</type>
+        <location>1817 Bairsford Dr</location>
+        <occurred>3/14/2016 7:00:00 AM</occurred>
+        <between>3/14/2016 3:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165558</link>
+    </crime>
+    <crime>
+        <type>Theft of License Plate</type>
+        <location>4128 Palmer Park Cir W</location>
+        <occurred>3/13/2016 5:00:00 PM</occurred>
+        <between>3/14/2016 5:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165559</link>
+    </crime>
+    <crime>
+        <type>Robbery</type>
+        <location>2100 E Dublin Granville Rd</location>
+        <occurred>3/14/2016 6:10:00 PM</occurred>
+        <between>3/14/2016 6:18:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165560</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>1397 W Mound St</location>
+        <occurred>1/5/2016 12:00:00 AM</occurred>
+        <between>1/8/2016 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165561</link>
+    </crime>
+    <crime>
+        <type>Breaking and Entering Zone 1</type>
+        <location>2332 River Run Trce Garage D9</location>
+        <occurred>1/1/2016 12:00:00 AM</occurred>
+        <between>3/14/2016 6:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165562</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 1</type>
+        <location>1300 Polaris Pkwy</location>
+        <occurred>3/14/2016 7:01:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165563</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>1573 Schrock Rd</location>
+        <occurred>3/14/2016 7:08:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165564</link>
+    </crime>
+    <crime>
+        <type>Felony Theft - Zone 2</type>
+        <location>3426 Colony Bay Blvd</location>
+        <occurred>3/12/2016 9:00:00 PM</occurred>
+        <between>3/13/2016 11:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165565</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 2</type>
+        <location>934 Conestoga Dr</location>
+        <occurred>3/14/2016 9:00:00 AM</occurred>
+        <between>3/14/2016 5:30:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165566</link>
+    </crime>
+    <crime>
+        <type>Theft - Misdemeanor</type>
+        <location>Whimswillow Dr/ Weeping Willow Dr</location>
+        <occurred>3/14/2016 7:30:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165567</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>1323 St James Lutheran Ln</location>
+        <occurred>3/14/2016 6:30:00 PM</occurred>
+        <between>3/14/2016 8:29:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165568</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>128 E Beechwold Blvd</location>
+        <occurred>3/14/2016 1:15:00 PM</occurred>
+        <between>3/14/2016 8:33:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165569</link>
+    </crime>
+    <crime>
+        <type>Vandalism</type>
+        <location>430 Barnett Rd</location>
+        <occurred>3/14/2016 6:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165570</link>
+    </crime>
+    <crime>
+        <type>Theft - From Motor Vehicle - Felony</type>
+        <location>1323 St James Lutheran Ln</location>
+        <occurred>3/14/2016 6:30:00 PM</occurred>
+        <between>3/14/2016 8:29:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165571</link>
+    </crime>
+    <crime>
+        <type>Motor Vehicle Theft</type>
+        <location>3258 Harshman Dr</location>
+        <occurred>3/14/2016 11:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165572</link>
+    </crime>
+    <crime>
+        <type>Trespassing</type>
+        <location>1913 Lockbourne Rd</location>
+        <occurred>3/13/2016 12:06:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165573</link>
+    </crime>
+    <crime>
+        <type>Rape/Sexual Assault Vic 15 Yr and Younger</type>
+        <location>104 - 104 District</location>
+        <occurred>3/14/2016 8:00:37 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165574</link>
+    </crime>
+    <crime>
+        <type>Rape/Sexual Assault Vic 15 Yr and Younger</type>
+        <location>62 - 62 District</location>
+        <occurred>3/14/2016 9:49:31 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165575</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>205 N 5th St</location>
+        <occurred>3/1/2016 10:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165576</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>2173 Softwind Ct</location>
+        <occurred>1/1/2014 12:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165577</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>1216 Cross Country Dr</location>
+        <occurred>2/28/2016 12:00:00 PM</occurred>
+        <between>3/12/2016 9:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165578</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>3064 Legion Ln</location>
+        <occurred>1/30/2016 5:14:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165579</link>
+    </crime>
+    <crime>
+        <type>Assault</type>
+        <location>1009 E Main St</location>
+        <occurred>2/22/2016 9:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165580</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>3021 Gerbert Rd</location>
+        <occurred>3/3/2016 7:30:00 PM</occurred>
+        <between>3/3/2016 8:15:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165581</link>
+    </crime>
+    <crime>
+        <type>Rape/Sexual Assault Vic 15 Yr and Younger</type>
+        <location>192 - 192 District</location>
+        <occurred>1/1/2016 12:00:00 AM</occurred>
+        <between>3/11/2016 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165582</link>
+    </crime>
+    <crime>
+        <type>Telecommunication Harassment</type>
+        <location>4800 Tamarack Blvd</location>
+        <occurred>3/9/2016 4:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165583</link>
+    </crime>
+    <crime>
+        <type>Rape/Sexual Assault Vic 15 Yr and Younger</type>
+        <location>194 - 194 District</location>
+        <occurred>1/1/2012 12:00:00 AM</occurred>
+        <between>3/1/2013 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165584</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>492 S High St Ste 200</location>
+        <occurred>3/14/2016 12:00:00 AM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165585</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>1972 Little Ave</location>
+        <occurred>3/7/2014 8:00:00 AM</occurred>
+        <between>3/11/2016 3:00:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165586</link>
+    </crime>
+    <crime>
+        <type>Rape/Sexual Assault Vic 15 Yr and Younger</type>
+        <location>133 - 133 District</location>
+        <occurred>1/1/2016 12:00:00 AM</occurred>
+        <between>3/10/2016 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165587</link>
+    </crime>
+    <crime>
+        <type>Burglary - Zone 4</type>
+        <location>3021 Gerbert Rd</location>
+        <occurred>3/10/2016 6:00:00 PM</occurred>
+        <between>3/10/2016 10:45:00 PM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165588</link>
+    </crime>
+    <crime>
+        <type>Extortion</type>
+        <location>2627 Marblevista Blvd</location>
+        <occurred>11/1/2014 12:00:00 AM</occurred>
+        <between>3/13/2016 12:00:00 AM</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165589</link>
+    </crime>
+    <crime>
+        <type>Fraud</type>
+        <location>120 Marconi Blvd</location>
+        <occurred>3/9/2016 12:00:00 PM</occurred>
+        <between>N/A</between>
+        <link>http://www.columbuspolice.org/Reports/PublicReport?caseID=4165590</link>
     </crime>
 </db>

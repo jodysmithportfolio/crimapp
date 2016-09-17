@@ -353,6 +353,7 @@ public class CrimeMap extends AppCompatActivity implements OnMapReadyCallback {
                     Calendar tempCal = new GregorianCalendar();
                     tempCal.setTime(c.getOccurred());
                     Calendar crimeTime = new GregorianCalendar();
+
                     crimeTime.setTime(new Date());
                     crimeTime.set(Calendar.HOUR_OF_DAY,tempCal.get(Calendar.HOUR_OF_DAY));
                     crimeTime.set(Calendar.MINUTE,tempCal.get(Calendar.MINUTE));
